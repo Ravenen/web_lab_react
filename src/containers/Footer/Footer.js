@@ -1,5 +1,7 @@
-import { Box, Grid, Typography } from "@material-ui/core";
 import React from "react";
+import { Box, Grid, Typography } from "@material-ui/core";
+import { Facebook, Twitter, LinkedIn } from "@material-ui/icons";
+import IconWrapper from "../../components/IconWrapper/IconWrapper";
 
 const Footer = () => {
   return (
@@ -21,9 +23,23 @@ const Footer = () => {
           Sint officia nostrud non reprehenderit amet et eu aliquip.
         </Typography>
       </Grid>
-      <Grid item xs={4}>
-        ів
-      </Grid>
+      <Box
+        component={Grid}
+        item
+        xs={4}
+        display="flex"
+        justifyContent="flex-end"
+      >
+        <IconWrapper>
+          <Facebook />
+        </IconWrapper>
+        <IconWrapper>
+          <Twitter />
+        </IconWrapper>
+        <IconWrapper>
+          <LinkedIn />
+        </IconWrapper>
+      </Box>
     </Box>
   );
 };
