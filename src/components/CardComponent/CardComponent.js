@@ -1,5 +1,4 @@
 import {
-  Box,
   Button,
   Card,
   CardActions,
@@ -10,10 +9,8 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import garland from "../../img/garland.jpg";
-import { useTheme } from "styled-components";
-import TagsComponent from "../TagsComponent/TagsComponent";
 import CardDescription from "./CardDescription";
-import ColoredButton, { button } from "../ColoredButton/ColoredButton";
+import ColoredButton from "../ColoredButton/ColoredButton";
 
 const useStyles = makeStyles({
   media: {
@@ -22,7 +19,6 @@ const useStyles = makeStyles({
 });
 
 const CardComponent = (props) => {
-  const theme = useTheme();
   const classes = useStyles();
 
   return (
@@ -35,8 +31,9 @@ const CardComponent = (props) => {
         <CardDescription {...props} />
       </CardContent>
       <CardActions>
-        <ColoredButton color="success">Test</ColoredButton>
-        <Button color="primary">Buy</Button>
+        <ColoredButton variant="outlined" color="success">
+          Buy
+        </ColoredButton>
         <Button color="default">Learn More</Button>
       </CardActions>
     </Card>
