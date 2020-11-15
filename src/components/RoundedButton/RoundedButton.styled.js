@@ -1,11 +1,10 @@
-import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import styled from "styled-components";
 
 export const useStyles = makeStyles((theme) => ({
   rounded: {
-    marginTop: 10,
-    marginBottom: 10,
+    height: 45,
+    paddingLeft: 30,
+    paddingRight: 30,
     borderRadius: 30,
   },
 }));
