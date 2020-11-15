@@ -1,12 +1,8 @@
 import React from "react";
-import { Badge, Button, IconButton } from "@material-ui/core";
+import { Badge, IconButton } from "@material-ui/core";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import {
-  useStyles,
-  StyledButtonsDiv,
-  StyledButton,
-} from "./NavActionButtons.styled";
-import RoundedButton from "../../components/RoundedButton/RoundedButton";
+import { useStyles, StyledButtonsDiv } from "./NavActionButtons.styled";
+import RoundedButton from "../../../components/RoundedButton/RoundedButton";
 
 const ActionNavButtons = () => {
   const classes = useStyles();
@@ -18,7 +14,7 @@ const ActionNavButtons = () => {
           <ShoppingCartIcon fontSize="small" />
         </Badge>
       </IconButton>
-      <RoundedButton variant="contained" color="primary">
+      <RoundedButton variant="contained" color="secondary">
         Sign In
       </RoundedButton>
     </StyledButtonsDiv>
