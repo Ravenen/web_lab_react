@@ -19,7 +19,6 @@ const theme = createMuiTheme({
     },
   },
   typography: {
-    // fontFamily: ["Playfair Display", "Roboto", "Arial", "sans-serif"].join(","),
     button: {
       fontSize: 15,
     },
