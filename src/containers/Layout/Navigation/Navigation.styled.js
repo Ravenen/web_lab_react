@@ -11,22 +11,12 @@ export const StyledUl = styled.ul`
   padding: 0;
 
   li {
-    padding: 0 15px;
-    transition: all 0.3s ease-out 0s;
-    :hover {
-      color: ${(props) => props.theme.palette.primary.main};
-    }
+    padding: 5px 25px;
 
     .selected {
       color: ${(props) => props.theme.palette.primary.main};
     }
   }
-`;
-
-export const StyledNavLink = styled(NavLink)`
-  padding: 5px 10px;
-  text-decoration: none;
-  color: inherit;
 `;
 
 export const StyledBadge = withStyles((theme) => ({

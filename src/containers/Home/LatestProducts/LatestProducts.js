@@ -1,6 +1,7 @@
-import { Box, Divider, Grid, Link, Typography } from "@material-ui/core";
-import React from "react";
+import { Box, Divider, Grid, Typography } from "@material-ui/core";
+import React, { useState } from "react";
 import CardComponent from "../../../components/CardComponent/CardComponent";
+import { StyledToggleLink } from "./LatestProducts.styled";
 
 const API = {
   garlands: [
@@ -35,29 +36,37 @@ const API = {
 };
 
 const LatestProducts = (props) => {
-  console.log(API.getAll());
+  const [naturalFilter, setNaturalFiler] = useState(0);
   return (
     <Box mx={30} my={10}>
+      <Box display="flex" alignItems="center">
+        <Box flexGrow={1}>
+          <Typography variant="h3">Latest Products</Typography>
+        </Box>
+        <Box p={1}>
+          <StyledToggleLink
+            onClick={() => setNaturalFiler(0)}
+            selected={!naturalFilter}
+          >
+            All
+          </StyledToggleLink>
+        </Box>
+        <Box p={1}>
+          <StyledToggleLink
+            onClick={() => setNaturalFiler(1)}
+            selected={naturalFilter}
+          >
+            Natural
+          </StyledToggleLink>
+        </Box>
+      </Box>
+      <Box mt={3} mb={5}>
+        <Divider />
+      </Box>
       <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <Box display="flex" alignItems="center">
-            <Box flexGrow={1}>
-              <Typography variant="h3">Latest Products</Typography>
-            </Box>
-            <Box p={1}>
-              <Link>All</Link>
-            </Box>
-            <Box p={1}>
-              <Link>Natural</Link>
-            </Box>
-          </Box>
-          <Box mt={3} mb={5}>
-            <Divider />
-          </Box>
-        </Grid>
-        {API.getAll().map((garland) => (
-          <Grid item sm={12} md={6} lg={4}>
-            <CardComponent {...garland}></CardComponent>
+        {API.getAll().map((garland, idx) => (
+          <Grid item sm={12} md={6} lg={4} key={idx}>
+            <CardComponent key={idx} {...garland}></CardComponent>
           </Grid>
         ))}
       </Grid>
