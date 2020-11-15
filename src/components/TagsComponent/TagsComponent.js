@@ -5,9 +5,7 @@ const TagsComponent = ({ tags }) => {
   return (
     <Box display="flex" my={1.5}>
       {tags.map((tag) => (
-        <Box mx={0.5} component={Chip} label={tag}>
-          {/* <Chip label={tag} /> */}
-        </Box>
+        <Box mx={0.5} component={Chip} label={tag} />
       ))}
     </Box>
   );

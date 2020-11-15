@@ -12,59 +12,32 @@ import React from "react";
 import garland from "../../img/garland.jpg";
 import { useTheme } from "styled-components";
 import TagsComponent from "../TagsComponent/TagsComponent";
+import CardDescription from "./CardDescription";
+import ColoredButton, { button } from "../ColoredButton/ColoredButton";
 
 const useStyles = makeStyles({
-  root: {
-    width: "100%",
-  },
   media: {
     height: 360,
   },
 });
 
-const CardComponent = ({
-  id,
-  color,
-  length_in_metres,
-  is_natural,
-  decor_type,
-  price_in_uah,
-}) => {
+const CardComponent = (props) => {
   const theme = useTheme();
   const classes = useStyles();
 
-  const booleanToText = (boolValue) => {
-    return boolValue ? "Yes" : "No";
-  };
-
-  const booleanToColor = (boolValue) => {
-    return boolValue ? theme.palette.success.main : theme.palette.error.main;
-  };
-
   return (
-    <Card className={classes.root} key={id}>
+    <Card>
       <CardMedia className={classes.media} image={garland} title="Garland" />
       <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
           Garland
         </Typography>
-        <Typography variant="body2" color="textSecondary" component="p">
-          Color: {color} <br />
-          Length: {length_in_metres}m <br />
-          Natural:{" "}
-          <Box
-            component="span"
-            color={booleanToColor(is_natural)}
-            fontWeight="bold"
-          >
-            {booleanToText(is_natural)}
-          </Box>
-          <TagsComponent tags={decor_type} />
-        </Typography>
+        <CardDescription {...props} />
       </CardContent>
       <CardActions>
+        <ColoredButton color="success">Test</ColoredButton>
         <Button color="primary">Buy</Button>
-        <Button color="secondary">Learn More</Button>
+        <Button color="default">Learn More</Button>
       </CardActions>
     </Card>
   );
