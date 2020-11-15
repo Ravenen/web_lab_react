@@ -1,6 +1,7 @@
 import React from "react";
 import { StyledNav } from "./Layout.styled";
-import "./Layout.css";
+import Navigation from "../Navigation/Navigation";
+import NavActionButtons from "../NavActionButtons/NavActionButtons";
 
 const Layout = () => {
   return (
@@ -10,6 +11,8 @@ const Layout = () => {
         className="logo"
         src="https://preview.colorlib.com/theme/estore/assets/img/logo/logo.png"
       />
+      <Navigation />
+      <NavActionButtons />
     </StyledNav>
   );
 };

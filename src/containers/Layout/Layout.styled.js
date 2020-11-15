@@ -5,5 +5,5 @@ export const StyledNav = styled.nav`
   height: 100px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
 `;
