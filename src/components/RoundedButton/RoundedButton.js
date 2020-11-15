@@ -1,6 +1,7 @@
 import { Button } from "@material-ui/core";
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import ColoredButton from "../ColoredButton/ColoredButton";
 
 export const useStyles = makeStyles((theme) => ({
   rounded: {
@@ -13,7 +14,7 @@ export const useStyles = makeStyles((theme) => ({
 
 const RoundedButton = (props) => {
   const classes = useStyles();
-  return <Button {...props} className={classes.rounded}></Button>;
+  return <ColoredButton {...props} className={classes.rounded}></ColoredButton>;
 };
 
 export default RoundedButton;
