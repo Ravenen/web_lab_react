@@ -1,14 +1,19 @@
 import React from "react";
-import { Badge, IconButton } from "@material-ui/core";
+import { Badge, Box, IconButton, makeStyles } from "@material-ui/core";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import { useStyles, StyledButtonsDiv } from "./NavActionButtons.styled";
 import RoundedButton from "../../../components/RoundedButton/RoundedButton";
+
+const useStyles = makeStyles((theme) => ({
+  extendedIcon: {
+    marginRight: theme.spacing(5),
+  },
+}));
 
 const ActionNavButtons = () => {
   const classes = useStyles();
 
   return (
-    <StyledButtonsDiv>
+    <Box display="flex">
       <IconButton aria-label="cart" className={classes.extendedIcon}>
         <Badge badgeContent={2} color="primary">
           <ShoppingCartIcon fontSize="small" />
@@ -17,7 +22,7 @@ const ActionNavButtons = () => {
       <RoundedButton variant="contained" color="secondary">
         Sign In
       </RoundedButton>
-    </StyledButtonsDiv>
+    </Box>
   );
 };
 

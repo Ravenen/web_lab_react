@@ -1,12 +1,20 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { StyledNavLink, StyledUl, StyledBadge } from "./Navigation.styled";
+import { StyledNavLink, StyledNavMenu, StyledBadge } from "./Navigation.styled";
 import Badge from "@material-ui/core/Badge";
 import { HoverableNavLink } from "../../../components/HoverableLink/HoverableLink.styled";
+import { Box } from "@material-ui/core";
 
 const Navigation = () => {
   return (
-    <StyledUl>
+    // <StyledNavMenu>
+    <Box
+      component={StyledNavMenu}
+      p={0}
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+    >
       <li>
         <HoverableNavLink exact to="/" activeClassName="selected">
           Home
@@ -24,7 +32,8 @@ const Navigation = () => {
           Blog
         </HoverableNavLink>
       </li>
-    </StyledUl>
+    </Box>
+    // </StyledNavMenu>
   );
 };
 

@@ -1,20 +1,25 @@
 import { Box, Grid, Hidden, Typography } from "@material-ui/core";
 import React from "react";
-import { StyledHero } from "./Hero.styled";
 import hero from "../../../img/hero.png";
 import RoundedButton from "../../../components/RoundedButton/RoundedButton";
 
 const Hero = () => {
   return (
-    <StyledHero>
-      <Grid container justify="space-between">
+    <Box display="flex" bgcolor="background.main" pt={15}>
+      <Grid container justify="space-between" wrap="wrap">
         <Grid item md={6}>
           <Hidden smDown>
-            <img alt="hero" src={hero} />
+            <Box
+              component="img"
+              alt="hero"
+              src={hero}
+              height="100%"
+              width="100%"
+            />
           </Hidden>
         </Grid>
-        <Grid item sm={12} md={5}>
-          <Box fontWeight={700} mb={2} mt={10}>
+        <Grid item sm={10} md={5}>
+          <Box fontWeight="bold" mb={2} mt={10}>
             <Typography variant="h1">Garland collection!</Typography>
           </Box>
           <Box fontStyle="italic" mb={6}>
@@ -27,7 +32,7 @@ const Hero = () => {
           </RoundedButton>
         </Grid>
       </Grid>
-    </StyledHero>
+    </Box>
   );
 };
 

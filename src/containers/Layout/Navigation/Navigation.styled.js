@@ -3,15 +3,11 @@ import styled from "styled-components";
 import Badge from "@material-ui/core/Badge";
 import { withStyles } from "@material-ui/core/styles";
 
-export const StyledUl = styled.ul`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+export const StyledNavMenu = styled.ul`
   list-style-type: none;
-  padding: 0;
 
   li {
-    padding: 5px 25px;
+    padding: 0 25px;
 
     .selected {
       color: ${(props) => props.theme.palette.primary.main};
@@ -23,8 +19,8 @@ export const StyledBadge = withStyles((theme) => ({
   badge: {
     fontSize: 10,
     right: -3,
-    top: 0,
-    border: `2px solid ${theme.palette.background.paper}`,
-    padding: "0 4px",
+    top: -1,
+    border: `3px solid ${theme.palette.background.paper}`,
+    padding: "0 5px",
   },
 }))(Badge);

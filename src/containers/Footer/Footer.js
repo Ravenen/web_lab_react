@@ -30,13 +30,13 @@ const Footer = () => {
         display="flex"
         justifyContent="flex-end"
       >
-        <IconWrapper>
+        <IconWrapper href="https://www.facebook.com/vpavliyk/">
           <Facebook />
         </IconWrapper>
-        <IconWrapper>
+        <IconWrapper href="https://twitter.com/Engenius7">
           <Twitter />
         </IconWrapper>
-        <IconWrapper>
+        <IconWrapper href="https://www.linkedin.com/in/vpavliyk/">
           <LinkedIn />
         </IconWrapper>
       </Box>

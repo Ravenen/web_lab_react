@@ -1,15 +1,22 @@
 import React from "react";
-import { StyledNav } from "./Layout.styled";
 import Navigation from "./Navigation/Navigation";
 import NavActionButtons from "./NavActionButtons/NavActionButtons";
 import logo from "../../img/logo.png";
-import { Hidden } from "@material-ui/core";
+import { Box, Hidden } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
+import { HoverableNavLink } from "../../components/HoverableLink/HoverableLink.styled";
 
 const Layout = () => {
   return (
-    <StyledNav>
-      <img alt="logo" className="logo" src={logo} />
+    <Box
+      py={2}
+      display="flex"
+      alignItems="center"
+      justifyContent="space-evenly"
+    >
+      <HoverableNavLink exact to="/">
+        <img alt="logo" className="logo" src={logo} />
+      </HoverableNavLink>
       <Hidden smDown>
         <Navigation />
         <NavActionButtons />
@@ -17,7 +24,7 @@ const Layout = () => {
       <Hidden mdUp>
         <Menu />
       </Hidden>
-    </StyledNav>
+    </Box>
   );
 };
 
