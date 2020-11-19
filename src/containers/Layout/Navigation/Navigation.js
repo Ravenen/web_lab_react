@@ -1,13 +1,10 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import { StyledNavLink, StyledNavMenu, StyledBadge } from "./Navigation.styled";
-import Badge from "@material-ui/core/Badge";
+import { StyledNavMenu, StyledBadge } from "./Navigation.styled";
 import { HoverableNavLink } from "../../../components/HoverableLink/HoverableLink.styled";
 import { Box } from "@material-ui/core";
 
 const Navigation = () => {
   return (
-    // <StyledNavMenu>
     <Box
       component={StyledNavMenu}
       p={0}
@@ -33,7 +30,6 @@ const Navigation = () => {
         </HoverableNavLink>
       </li>
     </Box>
-    // </StyledNavMenu>
   );
 };
 
