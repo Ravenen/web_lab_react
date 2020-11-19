@@ -10,12 +10,16 @@ const Layout = () => {
   return (
     <Box
       py={2}
+      width="100%"
+      position="fixed"
+      zIndex={1000}
+      bgcolor="#FFFFFF"
       display="flex"
-      alignItems="center"
       justifyContent="space-evenly"
+      alignItems="center"
     >
       <HoverableNavLink exact to="/">
-        <img alt="logo" className="logo" src={logo} />
+        <img alt="logo" src={logo} />
       </HoverableNavLink>
       <Hidden smDown>
         <Navigation />
