@@ -8,9 +8,28 @@ import {
   Typography,
 } from "@material-ui/core";
 import React from "react";
-import garland from "../../img/garland.jpg";
 import CardDescription from "./CardDescription";
 import ColoredButton from "../ColoredButton/ColoredButton";
+
+import defaultImg from "../../img/default.png";
+import garland1 from "../../img/product/garland1.jpg";
+import garland2 from "../../img/product/garland2.jpg";
+import garland3 from "../../img/product/garland3.jpg";
+import garland4 from "../../img/product/garland4.jpg";
+import garland5 from "../../img/product/garland5.jpg";
+import garland6 from "../../img/product/garland6.jpg";
+import garland7 from "../../img/product/garland7.jpg";
+
+const images = [
+  defaultImg,
+  garland1,
+  garland2,
+  garland3,
+  garland4,
+  garland5,
+  garland6,
+  garland7,
+];
 
 const useStyles = makeStyles({
   media: {
@@ -23,7 +42,11 @@ const CardComponent = (props) => {
 
   return (
     <Card>
-      <CardMedia className={classes.media} image={garland} title="Garland" />
+      <CardMedia
+        className={classes.media}
+        image={images[props.id] || images[0]}
+        title="Garland"
+      />
       <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
           Garland
