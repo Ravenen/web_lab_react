@@ -1,9 +1,9 @@
 import { Grid } from "@material-ui/core";
 import React from "react";
 
-const CardGridWrapper = ({ key, ...props }) => {
+const CardGridWrapper = (props) => {
   return (
-    <Grid item sm={12} md={6} lg={4} key={key}>
+    <Grid item sm={12} md={6} lg={4}>
       {props.children}
     </Grid>
   );
