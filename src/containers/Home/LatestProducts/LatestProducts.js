@@ -2,6 +2,8 @@ import { Box, Divider, Grid, Typography } from "@material-ui/core";
 import React, { useState } from "react";
 import CardComponent from "../../../components/CardComponent/CardComponent";
 import RoundedButton from "../../../components/RoundedButton/RoundedButton";
+import CardGridContainer from "../../CardGrid/CardGridContainer";
+import CardGridWrapper from "../../CardGrid/CardGridWrapper";
 import { StyledToggleLink } from "./LatestProducts.styled";
 
 const API = {
@@ -64,13 +66,13 @@ const LatestProducts = (props) => {
       <Box mt={3} mb={5}>
         <Divider />
       </Box>
-      <Grid container spacing={3}>
-        {API.getAll().map((garland, idx) => (
-          <Grid item sm={12} md={6} lg={4} key={idx}>
-            <CardComponent key={idx} {...garland}></CardComponent>
-          </Grid>
+      <CardGridContainer>
+        {API.getAll().map((garland) => (
+          <CardGridWrapper key={garland.id}>
+            <CardComponent key={garland.id} {...garland}></CardComponent>
+          </CardGridWrapper>
         ))}
-      </Grid>
+      </CardGridContainer>
       <Box mx="auto" mt={10}>
         <RoundedButton color="secondary" variant="contained">
           See more
