@@ -1,15 +1,20 @@
 import { Box, Chip } from "@material-ui/core";
 import React from "react";
 
+const removeUnderscoreFromString = (str) => {
+  return str.replace("_", " ");
+};
+
 const TagsComponent = ({ tags, ...props }) => {
   return (
-    <Box display="flex" my={1.5} key={props.key}>
+    <Box display="flex" flexWrap="wrap" my={1.5} key={props.key}>
       {tags.map((tag, idx) => (
         <Box
           mx={0.5}
+          my={0.5}
           component={Chip}
-          label={tag}
-          key={String(props.key) + idx}
+          label={removeUnderscoreFromString(tag)}
+          key={props.key + "-" + idx}
         />
       ))}
     </Box>
