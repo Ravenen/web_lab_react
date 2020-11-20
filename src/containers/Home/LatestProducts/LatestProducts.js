@@ -6,6 +6,7 @@ import CardGridContainer from "../../../components/CardGrid/CardGridContainer";
 import CardGridWrapper from "../../../components/CardGrid/CardGridWrapper";
 import { StyledToggleLink } from "./LatestProducts.styled";
 import { API } from "../../App/Utils";
+import ViewCardComponent from "../../../components/CardComponent/ViewCardComponent";
 
 const LatestProducts = (props) => {
   const [naturalFilter, setNaturalFiler] = useState(0);
@@ -40,7 +41,10 @@ const LatestProducts = (props) => {
           .slice(-3)
           .map((garland) => (
             <CardGridWrapper key={garland.id}>
-              <CardComponent key={garland.id} {...garland}></CardComponent>
+              <ViewCardComponent
+                key={garland.id}
+                {...garland}
+              ></ViewCardComponent>
             </CardGridWrapper>
           ))}
       </CardGridContainer>
