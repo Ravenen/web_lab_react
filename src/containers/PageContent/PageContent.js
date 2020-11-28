@@ -15,7 +15,7 @@ const PageContent = () => {
   );
 };
 
-export const Blog = () => {
+const Blog = () => {
   return <div>Blog Goes Here</div>;
 };
 
