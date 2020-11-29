@@ -1,19 +1,17 @@
 import { Box, Divider } from "@material-ui/core";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import CardComponent from "../../../components/CardComponent/CardComponent";
 import CardGridContainer from "../../../components/CardGrid/CardGridContainer";
 import CardGridWrapper from "../../../components/CardGrid/CardGridWrapper";
-import { API, removeUnderscoreFromString, tagList } from "../../../utils/Utils";
+import { removeUnderscoreFromString, tagList } from "../../../utils/Utils";
 import SearchBar from "material-ui-search-bar";
 import ChipAutocomplite from "../../../components/ChipAutocomplite/ChipAutocomplite";
+import { ItemsContext } from "../../../utils/Contexts";
 
 const ProductList = () => {
-  const allItems = useRef([]);
-  useEffect(() => {
-    allItems.current = API.getAll();
-  }, []);
+  const { allItems } = useContext(ItemsContext);
 
-  const [items, setItems] = useState(allItems.current);
+  const [items, setItems] = useState(allItems);
 
   const [searchValue, setSearchValue] = useState("");
   const [tagsFilter, setTagsFilter] = useState([]);
@@ -22,15 +20,23 @@ const ProductList = () => {
     setTagsFilter(values);
   };
 
+  const handleSearch = (value) => {
+    setSearchValue(value);
+  };
+
   useEffect(() => {
-    let newItems = allItems.current.filter(
+    let newItems;
+    newItems = allItems.filter(
       (item) =>
         tagsFilter.every((tag) => item.decor_type.indexOf(tag) >= 0) ||
         !tagsFilter.length
     );
+    newItems = newItems.filter(
+      (item) => item.color.includes(searchValue) || !searchValue.length
+    );
 
     setItems(newItems);
-  }, [tagsFilter]);
+  }, [tagsFilter, searchValue]);
 
   return (
     <Box mx={30} mt={10} mb={5} display="flex" flexDirection="column">
@@ -51,7 +57,8 @@ const ProductList = () => {
         />
         <SearchBar
           value={searchValue}
-          onChange={(newValue) => setSearchValue(newValue)}
+          onChange={handleSearch}
+          placeholder="Search by color"
           // onRequestSearch={() => doSomethingWith(this.state.value)}
         />
       </Box>

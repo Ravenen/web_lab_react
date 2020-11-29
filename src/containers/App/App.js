@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 import Layout from "../Layout/Layout";
 import { ThemeProvider } from "styled-components";
 import PageContent from "../PageContent/PageContent";
 import Footer from "../Footer/Footer";
+import { ItemsContext } from "../../utils/Contexts";
+import { API } from "../../utils/Utils";
 
 const theme = createMuiTheme({
   palette: {
@@ -41,13 +43,16 @@ const theme = createMuiTheme({
 });
 
 const App = () => {
+  const items = API.getAll();
   return (
     <BrowserRouter>
       <MuiThemeProvider theme={theme}>
         <ThemeProvider theme={theme}>
-          <Layout />
-          <PageContent />
-          <Footer />
+          <ItemsContext.Provider value={{ allItems: items }}>
+            <Layout />
+            <PageContent />
+            <Footer />
+          </ItemsContext.Provider>
         </ThemeProvider>
       </MuiThemeProvider>
     </BrowserRouter>

@@ -1,11 +1,11 @@
 import { Box, Divider, Typography } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import ViewCardComponent from "../../../components/CardComponent/ViewCardComponent";
 import RoundedButton from "../../../components/RoundedButton/RoundedButton";
 import CardGridContainer from "../../../components/CardGrid/CardGridContainer";
 import CardGridWrapper from "../../../components/CardGrid/CardGridWrapper";
 import { StyledToggleLink } from "./LatestProducts.styled";
-import { API } from "../../../utils/Utils";
+import { ItemsContext } from "../../../utils/Contexts";
 
 const seeMoreText = {
   seeMore: "See more",
@@ -13,22 +13,21 @@ const seeMoreText = {
 };
 
 const LatestProducts = () => {
+  const { allItems } = useContext(ItemsContext);
   const [naturalFilter, setNaturalFiler] = useState(0);
   const [showAllItems, setShowAllItems] = useState(false);
   const [seeMoreButtonText, setSeeMoreButtonText] = useState(
     seeMoreText.seeMore
   );
-  const [itemsToShow, setItemsToShow] = useState(
-    API.getAll().slice(-3).reverse()
-  );
+  const [itemsToShow, setItemsToShow] = useState(allItems.slice(-3).reverse());
   const handleSeeMore = () => {
     let nextShowAllItems = !showAllItems;
     if (nextShowAllItems) {
-      let allItems = API.getAll().slice().reverse();
-      setItemsToShow(allItems);
+      let reversedItems = allItems.slice().reverse();
+      setItemsToShow(reversedItems);
       setSeeMoreButtonText(seeMoreText.seeLess);
     } else {
-      let lastItems = API.getAll().slice(-3).reverse();
+      let lastItems = allItems.slice(-3).reverse();
       setItemsToShow(lastItems);
       setSeeMoreButtonText(seeMoreText.seeMore);
     }
