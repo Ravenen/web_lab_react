@@ -39,7 +39,7 @@ const ViewCardComponent = (props) => {
         </Box>
         <Box textAlign="center">
           <Typography variant="body2" color="textSecondary">
-            <Box lineHeight={2}>
+            <Box lineHeight={2} component="span">
               Quis culpa deserunt do quis commodo nulla. Aute non aliquip est
               aliquip do incididunt irure duis anim ullamco.
             </Box>
