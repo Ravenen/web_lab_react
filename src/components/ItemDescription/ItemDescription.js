@@ -30,7 +30,7 @@ const ItemDescription = (props) => {
           </Box>
         </Typography>
       </Box>
-      <Box>
+      <Box mb={3}>
         <Typography variant="h5" component="p">
           Price: {props.price_in_uah} UAH
         </Typography>
