@@ -1,9 +1,6 @@
 import { Box, Chip } from "@material-ui/core";
 import React from "react";
-
-const removeUnderscoreFromString = (str) => {
-  return str.replace("_", " ");
-};
+import { removeUnderscoreFromString } from "../../containers/App/Utils";
 
 const TagsComponent = ({ tags, ...props }) => {
   return (

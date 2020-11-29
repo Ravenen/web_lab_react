@@ -77,11 +77,11 @@ export const API = {
 };
 
 export const tagList = [
-  "outdoor tree",
-  "indoor tree",
-  "house interior",
-  "house exterior",
-  "working place",
+  "outdoor_tree",
+  "indoor_tree",
+  "house_interior",
+  "house_exterior",
+  "working_place",
   "door",
 ];
 
@@ -95,3 +95,7 @@ export const productImages = [
   garland6,
   garland7,
 ];
+
+export const removeUnderscoreFromString = (str) => {
+  return str.replace("_", " ");
+};
