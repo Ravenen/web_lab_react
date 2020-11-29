@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   FormControl,
   InputLabel,
   MenuItem,
@@ -9,13 +10,16 @@ import {
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import ItemDescription from "../../components/ItemDescription/ItemDescription";
-import { API, productImages } from "../App/Utils";
+import { API, links, productImages } from "../../utils/Utils";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { HoverableNavLink } from "../../components/HoverableLink/HoverableLink.styled";
 import { ProductImage } from "./ItemPage.styled";
+import ColoredButton from "../../components/ColoredButton/ColoredButton";
 
-const packaging = {
+const packagingVariants = {
   standard: { value: 0, title: "Standard" },
+  box: { value: 1, title: "Box" },
+  present: { value: 2, title: "Present" },
 };
 
 const ItemPage = () => {
@@ -33,7 +37,7 @@ const ItemPage = () => {
   return (
     <Box mx={20} pt={15}>
       <Box mb={5}>
-        <HoverableNavLink to="/catalog">
+        <HoverableNavLink to={`/${links.catalog}`}>
           <ArrowBackIosIcon />
         </HoverableNavLink>
       </Box>
@@ -47,7 +51,7 @@ const ItemPage = () => {
         />
         <Box px={15}>
           <ItemDescription {...item} />
-          <Box display="flex" width="100%">
+          <Box display="flex" width="100%" mb={5}>
             <Box width="50%" mr={2}>
               <Box
                 component={TextField}
@@ -81,12 +85,30 @@ const ItemPage = () => {
                   <MenuItem value="">
                     <em>None</em>
                   </MenuItem>
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
+                  <MenuItem value={packagingVariants.standard.value}>
+                    {packagingVariants.standard.title}
+                  </MenuItem>
+                  <MenuItem value={packagingVariants.box.value}>
+                    {packagingVariants.box.title}
+                  </MenuItem>
+                  <MenuItem value={packagingVariants.present.value}>
+                    {packagingVariants.present.title}
+                  </MenuItem>
                 </Box>
               </Box>
             </Box>
+          </Box>
+          <Box display="flex" width="100%" justifyContent="flex-end">
+            <Box mr={3}>
+              <HoverableNavLink to={`/${links.catalog}`}>
+                <Button color="default" variant="text">
+                  Go back
+                </Button>
+              </HoverableNavLink>
+            </Box>
+            <ColoredButton color="success" variant="outlined">
+              Add to cart
+            </ColoredButton>
           </Box>
         </Box>
       </Box>

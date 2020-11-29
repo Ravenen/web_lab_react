@@ -1,6 +1,6 @@
 import { Box, Chip } from "@material-ui/core";
 import React from "react";
-import { removeUnderscoreFromString } from "../../containers/App/Utils";
+import { removeUnderscoreFromString } from "../../utils/Utils";
 
 const TagsComponent = ({ tags, ...props }) => {
   return (

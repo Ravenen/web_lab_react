@@ -8,7 +8,7 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import { StyledBadge } from "../StyledBadge/StyledBadge.styled";
-import { productImages } from "../../containers/App/Utils";
+import { productImages } from "../../utils/Utils";
 
 const useStyles = makeStyles({
   media: {

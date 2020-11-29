@@ -5,7 +5,7 @@ import RoundedButton from "../../../components/RoundedButton/RoundedButton";
 import CardGridContainer from "../../../components/CardGrid/CardGridContainer";
 import CardGridWrapper from "../../../components/CardGrid/CardGridWrapper";
 import { StyledToggleLink } from "./LatestProducts.styled";
-import { API } from "../../App/Utils";
+import { API } from "../../../utils/Utils";
 
 const seeMoreText = {
   seeMore: "See more",

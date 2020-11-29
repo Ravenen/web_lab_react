@@ -1,11 +1,11 @@
-import defaultImg from "../../img/default.png";
-import garland1 from "../../img/product/garland1.jpg";
-import garland2 from "../../img/product/garland2.jpg";
-import garland3 from "../../img/product/garland3.jpg";
-import garland4 from "../../img/product/garland4.jpg";
-import garland5 from "../../img/product/garland5.jpg";
-import garland6 from "../../img/product/garland6.jpg";
-import garland7 from "../../img/product/garland7.jpg";
+import defaultImg from "../img/default.png";
+import garland1 from "../img/product/garland1.jpg";
+import garland2 from "../img/product/garland2.jpg";
+import garland3 from "../img/product/garland3.jpg";
+import garland4 from "../img/product/garland4.jpg";
+import garland5 from "../img/product/garland5.jpg";
+import garland6 from "../img/product/garland6.jpg";
+import garland7 from "../img/product/garland7.jpg";
 
 export const API = {
   garlands: [
@@ -101,4 +101,10 @@ export const productImages = [
 
 export const removeUnderscoreFromString = (str) => {
   return str.replace("_", " ");
+};
+
+export const links = {
+  home: "",
+  catalog: "catalog",
+  blog: "blog",
 };

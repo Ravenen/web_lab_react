@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import CardComponent from "../../../components/CardComponent/CardComponent";
 import CardGridContainer from "../../../components/CardGrid/CardGridContainer";
 import CardGridWrapper from "../../../components/CardGrid/CardGridWrapper";
-import { API, removeUnderscoreFromString, tagList } from "../../App/Utils";
+import { API, removeUnderscoreFromString, tagList } from "../../../utils/Utils";
 import SearchBar from "material-ui-search-bar";
 import ChipAutocomplite from "../../../components/ChipAutocomplite/ChipAutocomplite";
 
