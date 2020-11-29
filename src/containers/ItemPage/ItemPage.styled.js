@@ -4,4 +4,5 @@ export const ProductImage = styled.img`
   object-fit: cover;
   width: 300px;
   height: 300px;
+  border-radius: 10px;
 `;
