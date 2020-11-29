@@ -1,14 +1,37 @@
 import { Box, Divider } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import CardComponent from "../../../components/CardComponent/CardComponent";
 import CardGridContainer from "../../../components/CardGrid/CardGridContainer";
 import CardGridWrapper from "../../../components/CardGrid/CardGridWrapper";
-import { API, tagList } from "../../App/Utils";
+import { API, removeUnderscoreFromString, tagList } from "../../App/Utils";
 import SearchBar from "material-ui-search-bar";
 import ChipAutocomplite from "../../../components/ChipAutocomplite/ChipAutocomplite";
 
 const ProductList = () => {
+  const allItems = useRef([]);
+  useEffect(() => {
+    allItems.current = API.getAll();
+  }, []);
+
+  const [items, setItems] = useState(allItems.current);
+
   const [searchValue, setSearchValue] = useState("");
+  const [tagsFilter, setTagsFilter] = useState([]);
+
+  const handleTagsFilter = (event, values) => {
+    setTagsFilter(values);
+  };
+
+  useEffect(() => {
+    let newItems = allItems.current.filter(
+      (item) =>
+        tagsFilter.every((tag) => item.decor_type.indexOf(tag) >= 0) ||
+        !tagsFilter.length
+    );
+
+    setItems(newItems);
+  }, [tagsFilter]);
+
   return (
     <Box mx={30} mt={10} mb={5} display="flex" flexDirection="column">
       <Box
@@ -21,8 +44,10 @@ const ProductList = () => {
         <ChipAutocomplite
           width={300}
           dataSource={tagList}
+          getOptionLabel={(option) => removeUnderscoreFromString(option)}
           label="Tags"
           placeholder="Select tags..."
+          onChange={handleTagsFilter}
         />
         <SearchBar
           value={searchValue}
@@ -34,7 +59,7 @@ const ProductList = () => {
         <Divider />
       </Box>
       <CardGridContainer>
-        {API.getAll().map((garland) => (
+        {items.map((garland) => (
           <CardGridWrapper key={garland.id}>
             <CardComponent key={garland.id} {...garland}></CardComponent>
           </CardGridWrapper>
