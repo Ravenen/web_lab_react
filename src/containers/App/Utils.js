@@ -74,6 +74,9 @@ export const API = {
   getAll: function () {
     return this.garlands;
   },
+  getById: function (id) {
+    return this.garlands.find((item) => item.id === id);
+  },
 };
 
 export const tagList = [
