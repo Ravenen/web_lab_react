@@ -13,15 +13,17 @@ const seeMoreText = {
 };
 
 const LatestProducts = () => {
-  const [showAllItems, setShowAllItems] = useState(false);
   const [naturalFilter, setNaturalFiler] = useState(0);
+  const [showAllItems, setShowAllItems] = useState(false);
   const [seeMoreButtonText, setSeeMoreButtonText] = useState(
     seeMoreText.seeMore
   );
-  const [itemsToShow, setItemsToShow] = useState(API.getAll().slice(-3));
+  const [itemsToShow, setItemsToShow] = useState(
+    API.getAll().slice(-3).reverse()
+  );
   const handleSeeMore = () => {
-    setShowAllItems(!showAllItems);
-    if (showAllItems) {
+    let nextShowAllItems = !showAllItems;
+    if (nextShowAllItems) {
       let allItems = API.getAll().slice().reverse();
       setItemsToShow(allItems);
       setSeeMoreButtonText(seeMoreText.seeLess);
@@ -30,6 +32,7 @@ const LatestProducts = () => {
       setItemsToShow(lastItems);
       setSeeMoreButtonText(seeMoreText.seeMore);
     }
+    setShowAllItems(!showAllItems);
   };
   return (
     <Box mx={30} mt={10} mb={5} display="flex" flexDirection="column">
