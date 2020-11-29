@@ -21,13 +21,18 @@ const ItemDescription = (props) => {
           </Box>
         </Typography>
       </Box>
-      <Box>
+      <Box mb={2}>
         <Typography variant="body1">
           <Box lineHeight={1.7} component="span">
             Color: {props.color} <br />
             Length: {props.length_in_metres}m <br />
             Natural: <BooleanText boolean={props.is_natural} />
           </Box>
+        </Typography>
+      </Box>
+      <Box>
+        <Typography variant="h5" component="p">
+          Price: {props.price_in_uah} UAH
         </Typography>
       </Box>
     </div>
