@@ -15,6 +15,7 @@ import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { HoverableNavLink } from "../../components/HoverableLink/HoverableLink.styled";
 import { ProductImage } from "./ItemPage.styled";
 import ColoredButton from "../../components/ColoredButton/ColoredButton";
+import NotFound from "../../components/NotFound/NotFound";
 
 const packagingVariants = {
   standard: { value: 0, title: "Standard" },
@@ -41,77 +42,81 @@ const ItemPage = () => {
           <ArrowBackIosIcon />
         </HoverableNavLink>
       </Box>
-      <Box display="flex" mx="auto" alignItems="flex-start">
-        <Box
-          component={ProductImage}
-          alt="product"
-          src={productImages[id] || productImages[0]}
-          width="30%"
-          ml={10}
-        />
-        <Box px={15}>
-          <ItemDescription {...item} />
-          <Box display="flex" width="100%" mb={5}>
-            <Box width="50%" mr={2}>
-              <Box
-                component={TextField}
-                width="100%"
-                id="number"
-                label="Quantity"
-                type="number"
-                onChange={handleChangeQuantity}
-                error={!isValid}
-                helperText={
-                  !isValid ? "Incorrect value (should be greater than 0)" : ""
-                }
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                variant="outlined"
-              />
-            </Box>
-            <Box width="50%">
-              <Box component={FormControl} variant="outlined" width="100%">
-                <InputLabel id="select-label">Packaging</InputLabel>
+      {item ? (
+        <Box display="flex" mx="auto" alignItems="flex-start">
+          <Box
+            component={ProductImage}
+            alt="product"
+            src={productImages[id] || productImages[0]}
+            width="30%"
+            ml={10}
+          />
+          <Box px={15}>
+            <ItemDescription {...item} />
+            <Box display="flex" width="100%" mb={5}>
+              <Box width="50%" mr={2}>
                 <Box
-                  component={Select}
-                  labelId="select-label"
-                  id="select-packaging"
-                  value={packaging}
-                  onChange={handleChangePackaging}
-                  label="Packaging"
+                  component={TextField}
                   width="100%"
-                >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
-                  <MenuItem value={packagingVariants.standard.value}>
-                    {packagingVariants.standard.title}
-                  </MenuItem>
-                  <MenuItem value={packagingVariants.box.value}>
-                    {packagingVariants.box.title}
-                  </MenuItem>
-                  <MenuItem value={packagingVariants.present.value}>
-                    {packagingVariants.present.title}
-                  </MenuItem>
+                  id="number"
+                  label="Quantity"
+                  type="number"
+                  onChange={handleChangeQuantity}
+                  error={!isValid}
+                  helperText={
+                    !isValid ? "Incorrect value (should be greater than 0)" : ""
+                  }
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  variant="outlined"
+                />
+              </Box>
+              <Box width="50%">
+                <Box component={FormControl} variant="outlined" width="100%">
+                  <InputLabel id="select-label">Packaging</InputLabel>
+                  <Box
+                    component={Select}
+                    labelId="select-label"
+                    id="select-packaging"
+                    value={packaging}
+                    onChange={handleChangePackaging}
+                    label="Packaging"
+                    width="100%"
+                  >
+                    <MenuItem value="">
+                      <em>None</em>
+                    </MenuItem>
+                    <MenuItem value={packagingVariants.standard.value}>
+                      {packagingVariants.standard.title}
+                    </MenuItem>
+                    <MenuItem value={packagingVariants.box.value}>
+                      {packagingVariants.box.title}
+                    </MenuItem>
+                    <MenuItem value={packagingVariants.present.value}>
+                      {packagingVariants.present.title}
+                    </MenuItem>
+                  </Box>
                 </Box>
               </Box>
             </Box>
-          </Box>
-          <Box display="flex" width="100%" justifyContent="flex-end">
-            <Box mr={3}>
-              <HoverableNavLink to={`/${links.catalog}`}>
-                <Button color="default" variant="text">
-                  Go back
-                </Button>
-              </HoverableNavLink>
+            <Box display="flex" width="100%" justifyContent="flex-end">
+              <Box mr={3}>
+                <HoverableNavLink to={`/${links.catalog}`}>
+                  <Button color="default" variant="text">
+                    Go back
+                  </Button>
+                </HoverableNavLink>
+              </Box>
+              <ColoredButton color="success" variant="outlined">
+                Add to cart
+              </ColoredButton>
             </Box>
-            <ColoredButton color="success" variant="outlined">
-              Add to cart
-            </ColoredButton>
           </Box>
         </Box>
-      </Box>
+      ) : (
+        <NotFound backTo={`/${links.catalog}`} />
+      )}
     </Box>
   );
 };
