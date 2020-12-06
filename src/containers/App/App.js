@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useReducer } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 import Layout from "../Layout/Layout";
 import { ThemeProvider } from "styled-components";
 import PageContent from "../PageContent/PageContent";
 import Footer from "../Footer/Footer";
-import { ItemsContext } from "../../utils/Contexts";
+import { GlobalContextProvider, ItemsContext } from "../../utils/Contexts";
+import { garlandInitialState, garlandReducer } from "../../utils/Reducer";
 import { API } from "../../utils/Utils";
 
 const theme = createMuiTheme({
@@ -43,16 +44,16 @@ const theme = createMuiTheme({
 });
 
 const App = () => {
-  const items = API.getAll();
+  // const items = API.getAll();
   return (
     <BrowserRouter>
       <MuiThemeProvider theme={theme}>
         <ThemeProvider theme={theme}>
-          <ItemsContext.Provider value={{ allItems: items }}>
+          <GlobalContextProvider>
             <Layout />
             <PageContent />
             <Footer />
-          </ItemsContext.Provider>
+          </GlobalContextProvider>
         </ThemeProvider>
       </MuiThemeProvider>
     </BrowserRouter>
