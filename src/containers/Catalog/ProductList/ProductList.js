@@ -18,7 +18,7 @@ const ProductList = () => {
   const [isLoading, setLoading] = useState(true);
   const [searchValue, setSearchValue] = useState("");
   const [tagsFilter, setTagsFilter] = useState([]);
-  const [priceRange, setPriceRange] = useState([0, Infinity]);
+  const [priceRange, setPriceRange] = useState([0, 3000]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -55,6 +55,7 @@ const ProductList = () => {
     setTimeout(() => {
       getFilteredGarlands(tagsFilter, priceRange)
         .then((res) => {
+          console.log(res.data);
           dispatch({ type: INIT_GARLANDS, payload: res.data });
         })
         .catch((e) => console.log(e))
@@ -108,7 +109,7 @@ const ProductList = () => {
           onChange={handleSearch}
           onCancelSearch={handleCancelSearch}
           placeholder="Search by color"
-          // onRequestSearch={() => doSomethingWith(this.state.value)}
+          onRequestSearch={handleSearchRequest}
         />
       </Box>
       <Box mt={3} mb={5}>
