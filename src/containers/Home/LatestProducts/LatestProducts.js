@@ -1,40 +1,12 @@
-import { Box, Divider, Grid, Typography } from "@material-ui/core";
+import { Box, Divider, Typography } from "@material-ui/core";
 import React, { useState } from "react";
 import CardComponent from "../../../components/CardComponent/CardComponent";
 import RoundedButton from "../../../components/RoundedButton/RoundedButton";
+import CardGridContainer from "../../../components/CardGrid/CardGridContainer";
+import CardGridWrapper from "../../../components/CardGrid/CardGridWrapper";
 import { StyledToggleLink } from "./LatestProducts.styled";
-
-const API = {
-  garlands: [
-    {
-      id: 1,
-      color: "red",
-      length_in_metres: 12,
-      is_natural: true,
-      decor_type: ["outdoor", "tree"],
-      price_in_uah: 1200.5,
-    },
-    {
-      id: 2,
-      color: "red",
-      length_in_metres: 12,
-      is_natural: false,
-      decor_type: ["outdoor", "tree"],
-      price_in_uah: 1200.5,
-    },
-    {
-      id: 3,
-      color: "red",
-      length_in_metres: 12,
-      is_natural: true,
-      decor_type: ["outdoor", "tree"],
-      price_in_uah: 1200.5,
-    },
-  ],
-  getAll: function () {
-    return this.garlands;
-  },
-};
+import { API } from "../../App/Utils";
+import ViewCardComponent from "../../../components/CardComponent/ViewCardComponent";
 
 const LatestProducts = (props) => {
   const [naturalFilter, setNaturalFiler] = useState(0);
@@ -64,13 +36,18 @@ const LatestProducts = (props) => {
       <Box mt={3} mb={5}>
         <Divider />
       </Box>
-      <Grid container spacing={3}>
-        {API.getAll().map((garland, idx) => (
-          <Grid item sm={12} md={6} lg={4} key={idx}>
-            <CardComponent key={idx} {...garland}></CardComponent>
-          </Grid>
-        ))}
-      </Grid>
+      <CardGridContainer>
+        {API.getAll()
+          .slice(-3)
+          .map((garland) => (
+            <CardGridWrapper key={garland.id}>
+              <ViewCardComponent
+                key={garland.id}
+                {...garland}
+              ></ViewCardComponent>
+            </CardGridWrapper>
+          ))}
+      </CardGridContainer>
       <Box mx="auto" mt={10}>
         <RoundedButton color="secondary" variant="contained">
           See more

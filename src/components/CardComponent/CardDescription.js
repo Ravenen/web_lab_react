@@ -11,7 +11,7 @@ const CardDescription = (props) => {
         Natural: <BooleanText boolean={props.is_natural} />
       </Typography>
       <TagsComponent key={props.key} tags={props.decor_type} />
-      <Typography varianot="body2" color="textPrimary" component="p">
+      <Typography variant="body2" color="textPrimary" component="p">
         Price: {props.price_in_uah} UAH
       </Typography>
     </Box>

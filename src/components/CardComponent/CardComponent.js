@@ -8,9 +8,9 @@ import {
   Typography,
 } from "@material-ui/core";
 import React from "react";
-import garland from "../../img/garland.jpg";
 import CardDescription from "./CardDescription";
 import ColoredButton from "../ColoredButton/ColoredButton";
+import { productImages } from "../../containers/App/Utils";
 
 const useStyles = makeStyles({
   media: {
@@ -23,7 +23,11 @@ const CardComponent = (props) => {
 
   return (
     <Card>
-      <CardMedia className={classes.media} image={garland} title="Garland" />
+      <CardMedia
+        className={classes.media}
+        image={productImages[props.id] || productImages[0]}
+        title="Garland"
+      />
       <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
           Garland

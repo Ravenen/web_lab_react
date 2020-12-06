@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+import Catalog from "../Catalog/Catalog";
 import Home from "../Home/Home";
 
 const PageContent = () => {
@@ -7,15 +8,11 @@ const PageContent = () => {
     <div>
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/catalog" component={Catalog} />
-        <Route path="/blog" component={Blog} />
+        <Route exact path="/catalog" component={Catalog} />
+        <Route exact path="/blog" component={Blog} />
       </Switch>
     </div>
   );
-};
-
-export const Catalog = () => {
-  return <div>Catalog Goes Here</div>;
 };
 
 export const Blog = () => {
