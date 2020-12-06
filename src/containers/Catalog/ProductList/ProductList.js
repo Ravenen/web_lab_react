@@ -63,10 +63,9 @@ const ProductList = () => {
 
   useEffect(() => {
     let newItems;
-    newItems = items.filter(
+    newItems = garlands.filter(
       (item) => item.color.includes(searchValue) || !searchValue.length
     );
-
     setItems(newItems);
   }, [searchValue]);
 
