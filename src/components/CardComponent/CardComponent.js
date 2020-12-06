@@ -10,7 +10,8 @@ import {
 import React from "react";
 import CardDescription from "./CardDescription";
 import ColoredButton from "../ColoredButton/ColoredButton";
-import { productImages } from "../../containers/App/Utils";
+import { links, productImages } from "../../utils/Utils";
+import { HoverableNavLink } from "../HoverableLink/HoverableLink.styled";
 
 const useStyles = makeStyles({
   media: {
@@ -38,7 +39,9 @@ const CardComponent = (props) => {
         <ColoredButton variant="outlined" color="success">
           Buy
         </ColoredButton>
-        <Button color="default">Learn More</Button>
+        <HoverableNavLink to={`/${links.catalog}/${props.id}`}>
+          <Button color="default">Learn More</Button>
+        </HoverableNavLink>
       </CardActions>
     </Card>
   );

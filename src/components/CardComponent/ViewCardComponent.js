@@ -8,7 +8,7 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import { StyledBadge } from "../StyledBadge/StyledBadge.styled";
-import { productImages } from "../../containers/App/Utils";
+import { productImages } from "../../utils/Utils";
 
 const useStyles = makeStyles({
   media: {
@@ -39,7 +39,7 @@ const ViewCardComponent = (props) => {
         </Box>
         <Box textAlign="center">
           <Typography variant="body2" color="textSecondary">
-            <Box lineHeight={2}>
+            <Box lineHeight={2} component="span">
               Quis culpa deserunt do quis commodo nulla. Aute non aliquip est
               aliquip do incididunt irure duis anim ullamco.
             </Box>
