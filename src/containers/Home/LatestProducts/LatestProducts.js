@@ -1,9 +1,7 @@
 import { Box, Divider, Typography } from "@material-ui/core";
-import React, { useContext, useEffect, useState } from "react";
-import ViewCardComponent from "../../../components/CardComponent/ViewCardComponent";
+import React, { useEffect, useState } from "react";
 import RoundedButton from "../../../components/RoundedButton/RoundedButton";
 import CardGridContainer from "../../../components/CardGrid/CardGridContainer";
-import CardGridWrapper from "../../../components/CardGrid/CardGridWrapper";
 import { StyledToggleLink } from "./LatestProducts.styled";
 import { useGlobalContext } from "../../../utils/Contexts";
 import { getAllGarlands } from "../../../utils/API";
@@ -23,7 +21,7 @@ const LatestProducts = () => {
   const [seeMoreButtonText, setSeeMoreButtonText] = useState(
     seeMoreText.seeMore
   );
-  const [itemsToShow, setItemsToShow] = useState(garlands.slice(-3).reverse());
+  const [itemsToShow, setItemsToShow] = useState([]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -36,17 +34,17 @@ const LatestProducts = () => {
     }, 3000);
   }, [dispatch]);
   useEffect(() => {
-    setItemsToShow(garlands);
+    setItemsToShow(garlands.slice(-3).reverse());
   }, [garlands]);
 
   const handleSeeMore = () => {
     let nextShowAllItems = !showAllItems;
     if (nextShowAllItems) {
-      let reversedItems = itemsToShow.slice().reverse();
+      let reversedItems = garlands.slice().reverse();
       setItemsToShow(reversedItems);
       setSeeMoreButtonText(seeMoreText.seeLess);
     } else {
-      let lastItems = itemsToShow.slice(-3).reverse();
+      let lastItems = garlands.slice(-3).reverse();
       setItemsToShow(lastItems);
       setSeeMoreButtonText(seeMoreText.seeMore);
     }

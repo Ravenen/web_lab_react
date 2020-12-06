@@ -1,8 +1,6 @@
 import { Box, Divider, Slider, Typography } from "@material-ui/core";
-import React, { useContext, useEffect, useState } from "react";
-import CardComponent from "../../../components/CardComponent/CardComponent";
+import React, { useEffect, useState } from "react";
 import CardGridContainer from "../../../components/CardGrid/CardGridContainer";
-import CardGridWrapper from "../../../components/CardGrid/CardGridWrapper";
 import { removeUnderscoreFromString, tagList } from "../../../utils/Utils";
 import SearchBar from "material-ui-search-bar";
 import ChipAutocomplite from "../../../components/ChipAutocomplite/ChipAutocomplite";

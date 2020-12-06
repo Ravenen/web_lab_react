@@ -6,7 +6,9 @@ const axiosBase = axios.create({
 
 export const getAllGarlands = () => axiosBase.get();
 export const getFilteredGarlands = (tags, priceRange) => {
-  let tagsString = "tags=" + tags.join(",");
-  let priceRangeString = "price=" + priceRange.join(",");
-  return axiosBase.get(`?${tagsString}&${priceRangeString}`);
+  let tagsString = tags.join(",");
+  let priceRangeString = priceRange.join(",");
+  let customParams = { tags: tagsString, price: priceRangeString };
+  return axiosBase.get("", { params: customParams });
 };
+export const getGarlandById = (id) => axiosBase.get(id);

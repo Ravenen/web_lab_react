@@ -1,13 +1,11 @@
-import React, { useEffect, useReducer } from "react";
+import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 import Layout from "../Layout/Layout";
 import { ThemeProvider } from "styled-components";
 import PageContent from "../PageContent/PageContent";
 import Footer from "../Footer/Footer";
-import { GlobalContextProvider, ItemsContext } from "../../utils/Contexts";
-import { garlandInitialState, garlandReducer } from "../../utils/Reducer";
-import { API } from "../../utils/Utils";
+import { GlobalContextProvider } from "../../utils/Contexts";
 
 const theme = createMuiTheme({
   palette: {
@@ -44,7 +42,6 @@ const theme = createMuiTheme({
 });
 
 const App = () => {
-  // const items = API.getAll();
   return (
     <BrowserRouter>
       <MuiThemeProvider theme={theme}>
