@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Card,
   CardActions,
@@ -12,6 +13,7 @@ import CardDescription from "./CardDescription";
 import ColoredButton from "../ColoredButton/ColoredButton";
 import { links, productImages } from "../../utils/Utils";
 import { HoverableNavLink } from "../HoverableLink/HoverableLink.styled";
+import { Skeleton } from "@material-ui/lab";
 
 const useStyles = makeStyles({
   media: {
@@ -21,19 +23,31 @@ const useStyles = makeStyles({
 
 const CardComponent = (props) => {
   const classes = useStyles();
-
+  const isLoading = props.isLoading || false;
   return (
     <Card>
-      <CardMedia
-        className={classes.media}
-        image={productImages[props.id] || productImages[0]}
-        title="Garland"
-      />
+      {isLoading ? (
+        <Skeleton variant="rect" height={360} />
+      ) : (
+        <CardMedia
+          className={classes.media}
+          image={productImages[props.id] || productImages[0]}
+          title="Garland"
+        />
+      )}
       <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
-          Garland
+          {isLoading ? <Skeleton width="40%" /> : "Garland"}
         </Typography>
-        <CardDescription {...props} />
+        {isLoading ? (
+          <Box>
+            <Skeleton />
+            <Skeleton />
+            <Skeleton />
+          </Box>
+        ) : (
+          <CardDescription {...props} />
+        )}
       </CardContent>
       <CardActions>
         <ColoredButton variant="outlined" color="success">

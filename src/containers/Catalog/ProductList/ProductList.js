@@ -6,16 +6,33 @@ import CardGridWrapper from "../../../components/CardGrid/CardGridWrapper";
 import { removeUnderscoreFromString, tagList } from "../../../utils/Utils";
 import SearchBar from "material-ui-search-bar";
 import ChipAutocomplite from "../../../components/ChipAutocomplite/ChipAutocomplite";
-import { ItemsContext } from "../../../utils/Contexts";
+import { useGlobalContext } from "../../../utils/Contexts";
+import { INIT_GARLANDS } from "../../../utils/ActionTypes";
+import { getAllGarlands, getFilteredGarlands } from "../../../utils/API";
+import ProductsGrid from "./ProductsGrid/ProductsGrid";
 
 const ProductList = () => {
-  const { allItems } = useContext(ItemsContext);
+  const { garlands, dispatch } = useGlobalContext();
 
-  const [items, setItems] = useState(allItems);
-
+  const [items, setItems] = useState(garlands);
+  const [isLoading, setLoading] = useState(true);
   const [searchValue, setSearchValue] = useState("");
   const [tagsFilter, setTagsFilter] = useState([]);
   const [priceRange, setPriceRange] = useState([0, Infinity]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      getAllGarlands()
+        .then((res) => {
+          dispatch({ type: INIT_GARLANDS, payload: res.data });
+        })
+        .catch((e) => console.log(e))
+        .finally(() => setLoading(false));
+    }, 3000);
+  }, [dispatch]);
+  useEffect(() => {
+    setItems(garlands);
+  }, [garlands]);
 
   const handleTagsFilter = (event, values) => {
     setTagsFilter(values);
@@ -33,23 +50,26 @@ const ProductList = () => {
     setPriceRange(value);
   };
 
+  const handleSearchRequest = () => {
+    setLoading(true);
+    setTimeout(() => {
+      getFilteredGarlands(tagsFilter, priceRange)
+        .then((res) => {
+          dispatch({ type: INIT_GARLANDS, payload: res.data });
+        })
+        .catch((e) => console.log(e))
+        .finally(() => setLoading(false));
+    }, 3000);
+  };
+
   useEffect(() => {
     let newItems;
-    newItems = allItems.filter(
-      (item) =>
-        tagsFilter.every((tag) => item.decor_type.indexOf(tag) >= 0) ||
-        !tagsFilter.length
-    );
-    newItems = newItems.filter(
+    newItems = items.filter(
       (item) => item.color.includes(searchValue) || !searchValue.length
-    );
-    newItems = newItems.filter(
-      (item) =>
-        item.price_in_uah >= priceRange[0] && item.price_in_uah <= priceRange[1]
     );
 
     setItems(newItems);
-  }, [tagsFilter, searchValue, priceRange]);
+  }, [searchValue]);
 
   return (
     <Box mx={30} mt={10} mb={5} display="flex" flexDirection="column">
@@ -95,11 +115,7 @@ const ProductList = () => {
         <Divider />
       </Box>
       <CardGridContainer>
-        {items.map((garland) => (
-          <CardGridWrapper key={garland.id}>
-            <CardComponent key={garland.id} {...garland}></CardComponent>
-          </CardGridWrapper>
-        ))}
+        <ProductsGrid garlands={items} isLoading={isLoading} />
       </CardGridContainer>
     </Box>
   );
