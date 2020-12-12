@@ -1,32 +1,30 @@
 import { Box, Divider, Slider, Typography } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
-import CardGridContainer from "../../../components/CardGrid/CardGridContainer";
-import { removeUnderscoreFromString, tagList } from "../../../utils/Utils";
 import SearchBar from "material-ui-search-bar";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import CardGridContainer from "../../../components/CardGrid/CardGridContainer";
 import ChipAutocomplite from "../../../components/ChipAutocomplite/ChipAutocomplite";
-import { useGlobalContext } from "../../../utils/Contexts";
-import { INIT_GARLANDS } from "../../../utils/ActionTypes";
-import { getAllGarlands, getFilteredGarlands } from "../../../utils/API";
+import {
+  getAllItems,
+  getFilteredItems,
+  selectItems,
+  selectLoading,
+} from "../../../utils/context/slice/itemsSlice";
+import { removeUnderscoreFromString, tagList } from "../../../utils/Utils";
 import ProductsGrid from "./ProductsGrid/ProductsGrid";
 
 const ProductList = () => {
-  const { garlands, dispatch } = useGlobalContext();
+  const dispatch = useDispatch();
+  const garlands = useSelector(selectItems);
+  const isLoading = useSelector(selectLoading);
 
   const [items, setItems] = useState(garlands);
-  const [isLoading, setLoading] = useState(true);
   const [searchValue, setSearchValue] = useState("");
   const [tagsFilter, setTagsFilter] = useState([]);
   const [priceRange, setPriceRange] = useState([0, 3000]);
 
   useEffect(() => {
-    setTimeout(() => {
-      getAllGarlands()
-        .then((res) => {
-          dispatch({ type: INIT_GARLANDS, payload: res.data });
-        })
-        .catch((e) => console.log(e))
-        .finally(() => setLoading(false));
-    }, 3000);
+    dispatch(getAllItems());
   }, [dispatch]);
   useEffect(() => {
     setItems(garlands);
@@ -49,16 +47,7 @@ const ProductList = () => {
   };
 
   const handleSearchRequest = () => {
-    setLoading(true);
-    setTimeout(() => {
-      getFilteredGarlands(tagsFilter, priceRange)
-        .then((res) => {
-          console.log(res.data);
-          dispatch({ type: INIT_GARLANDS, payload: res.data });
-        })
-        .catch((e) => console.log(e))
-        .finally(() => setLoading(false));
-    }, 3000);
+    dispatch(getFilteredItems(tagsFilter, priceRange));
   };
 
   useEffect(() => {

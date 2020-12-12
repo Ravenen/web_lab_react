@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getAllGarlands } from "../../API";
+import { getAllGarlands, getFilteredGarlands } from "../../API";
 
 export const itemsSlice = createSlice({
   name: "items",
@@ -25,6 +25,15 @@ export const getAllItems = () => (dispatch) => {
   dispatch(loadingItems());
   setTimeout(() => {
     getAllGarlands()
+      .then((res) => dispatch(initItems(res.data)))
+      .catch((e) => console.log(e));
+  }, 2000);
+};
+
+export const getFilteredItems = (tagsFilter, priceRange) => (dispatch) => {
+  dispatch(loadingItems());
+  setTimeout(() => {
+    getFilteredGarlands(tagsFilter, priceRange)
       .then((res) => dispatch(initItems(res.data)))
       .catch((e) => console.log(e));
   }, 2000);
