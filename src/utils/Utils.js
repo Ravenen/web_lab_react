@@ -107,4 +107,5 @@ export const links = {
   home: "",
   catalog: "catalog",
   blog: "blog",
+  cart: "cart",
 };
