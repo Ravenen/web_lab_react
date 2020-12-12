@@ -18,7 +18,7 @@ const ActionNavButtons = () => {
     <Box display="flex">
       <HoverableNavLink exact to={`/${links.cart}`} activeClassName="selected">
         <IconButton aria-label="cart" className={classes.extendedIcon}>
-          <Badge badgeContent={2} color="primary">
+          <Badge badgeContent={0} color="primary">
             <ShoppingCartIcon fontSize="small" />
           </Badge>
         </IconButton>
