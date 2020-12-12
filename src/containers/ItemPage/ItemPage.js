@@ -7,17 +7,17 @@ import {
   Select,
   TextField,
 } from "@material-ui/core";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import { Skeleton } from "@material-ui/lab";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ItemDescription from "../../components/ItemDescription/ItemDescription";
-import { links, productImages } from "../../utils/Utils";
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import { HoverableNavLink } from "../../components/HoverableLink/HoverableLink.styled";
-import { ProductImage } from "./ItemPage.styled";
 import ColoredButton from "../../components/ColoredButton/ColoredButton";
+import { HoverableNavLink } from "../../components/HoverableLink/HoverableLink.styled";
+import ItemDescription from "../../components/ItemDescription/ItemDescription";
 import NotFound from "../../components/NotFound/NotFound";
 import { getGarlandById } from "../../utils/API";
-import { Skeleton } from "@material-ui/lab";
+import { links, productImages } from "../../utils/Utils";
+import { ProductImage } from "./ItemPage.styled";
 
 const packagingVariants = {
   standard: { value: 0, title: "Standard" },

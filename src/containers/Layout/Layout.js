@@ -1,10 +1,10 @@
-import React from "react";
-import Navigation from "./Navigation/Navigation";
-import NavActionButtons from "./NavActionButtons/NavActionButtons";
-import logo from "../../img/logo.png";
 import { Box, Hidden } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
+import React from "react";
 import { HoverableNavLink } from "../../components/HoverableLink/HoverableLink.styled";
+import logo from "../../img/logo.png";
+import NavActionButtons from "./NavActionButtons/NavActionButtons";
+import Navigation from "./Navigation/Navigation";
 
 const Layout = () => {
   return (

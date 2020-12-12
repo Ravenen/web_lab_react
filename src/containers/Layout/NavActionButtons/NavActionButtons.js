@@ -1,8 +1,8 @@
-import React from "react";
 import { Badge, Box, IconButton, makeStyles } from "@material-ui/core";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import RoundedButton from "../../../components/RoundedButton/RoundedButton";
+import React from "react";
 import { HoverableNavLink } from "../../../components/HoverableLink/HoverableLink.styled";
+import RoundedButton from "../../../components/RoundedButton/RoundedButton";
 import { links } from "../../../utils/Utils";
 
 const useStyles = makeStyles((theme) => ({

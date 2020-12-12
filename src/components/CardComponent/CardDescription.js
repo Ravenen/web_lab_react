@@ -1,4 +1,4 @@
-import { Box, Typography, useTheme } from "@material-ui/core";
+import { Box, Typography } from "@material-ui/core";
 import React from "react";
 import BooleanText from "../BooleanText/BooleanText";
 import TagsComponent from "../TagsComponent/TagsComponent";

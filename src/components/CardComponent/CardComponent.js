@@ -8,12 +8,12 @@ import {
   makeStyles,
   Typography,
 } from "@material-ui/core";
-import React from "react";
-import CardDescription from "./CardDescription";
-import ColoredButton from "../ColoredButton/ColoredButton";
-import { links, productImages } from "../../utils/Utils";
-import { HoverableNavLink } from "../HoverableLink/HoverableLink.styled";
 import { Skeleton } from "@material-ui/lab";
+import React from "react";
+import { links, productImages } from "../../utils/Utils";
+import ColoredButton from "../ColoredButton/ColoredButton";
+import { HoverableNavLink } from "../HoverableLink/HoverableLink.styled";
+import CardDescription from "./CardDescription";
 
 const useStyles = makeStyles({
   media: {

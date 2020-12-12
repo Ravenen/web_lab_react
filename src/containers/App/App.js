@@ -1,11 +1,11 @@
+import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
-import Layout from "../Layout/Layout";
 import { ThemeProvider } from "styled-components";
-import PageContent from "../PageContent/PageContent";
-import Footer from "../Footer/Footer";
 import { GlobalContextProvider } from "../../utils/Contexts";
+import Footer from "../Footer/Footer";
+import Layout from "../Layout/Layout";
+import PageContent from "../PageContent/PageContent";
 
 const theme = createMuiTheme({
   palette: {

@@ -1,9 +1,9 @@
-import React from "react";
-import { StyledNavMenu } from "./Navigation.styled";
-import { HoverableNavLink } from "../../../components/HoverableLink/HoverableLink.styled";
 import { Box } from "@material-ui/core";
+import React from "react";
+import { HoverableNavLink } from "../../../components/HoverableLink/HoverableLink.styled";
 import { StyledBadge } from "../../../components/StyledBadge/StyledBadge.styled";
 import { links } from "../../../utils/Utils";
+import { StyledNavMenu } from "./Navigation.styled";
 
 const Navigation = () => {
   return (
