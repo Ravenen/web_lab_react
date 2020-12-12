@@ -4,6 +4,7 @@ import Catalog from "../Catalog/Catalog";
 import Home from "../Home/Home";
 import ItemPage from "../ItemPage/ItemPage";
 import { links } from "../../utils/Utils";
+import Cart from "../Cart/Cart";
 
 const PageContent = () => {
   return (
@@ -13,7 +14,7 @@ const PageContent = () => {
         <Route exact path={`/${links.catalog}`} component={Catalog} />
         <Route path={`/${links.catalog}/:id`} component={ItemPage} />
         <Route exact path={`/${links.blog}`} component={Blog} />
-        <Route exact path={`/${links.cart}`} component={Blog} />
+        <Route exact path={`/${links.cart}`} component={Cart} />
       </Switch>
     </div>
   );
