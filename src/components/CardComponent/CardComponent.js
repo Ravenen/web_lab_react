@@ -9,7 +9,10 @@ import {
   Typography,
 } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
+import { useSnackbar } from "notistack";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../utils/context/slice/cartSlice";
 import { links, productImages } from "../../utils/Utils";
 import ColoredButton from "../ColoredButton/ColoredButton";
 import { HoverableNavLink } from "../HoverableLink/HoverableLink.styled";
@@ -24,6 +27,19 @@ const useStyles = makeStyles({
 const CardComponent = (props) => {
   const classes = useStyles();
   const isLoading = props.isLoading || false;
+  const garland = props.garland;
+  const dispatch = useDispatch();
+  const { enqueueSnackbar } = useSnackbar();
+
+  const handleBuy = () => {
+    let singleGarland = { ...garland, quantity: 1 };
+    dispatch(addToCart(singleGarland));
+    enqueueSnackbar("1 garland was added to cart!", {
+      variant: "success",
+      autoHideDuration: 5000,
+    });
+  };
+
   return (
     <Card>
       {isLoading ? (
@@ -31,7 +47,7 @@ const CardComponent = (props) => {
       ) : (
         <CardMedia
           className={classes.media}
-          image={productImages[props.id] || productImages[0]}
+          image={productImages[garland.id] || productImages[0]}
           title="Garland"
         />
       )}
@@ -46,14 +62,14 @@ const CardComponent = (props) => {
             <Skeleton />
           </Box>
         ) : (
-          <CardDescription {...props} />
+          <CardDescription {...garland} />
         )}
       </CardContent>
       <CardActions>
-        <ColoredButton variant="outlined" color="success">
+        <ColoredButton variant="outlined" color="success" onClick={handleBuy}>
           Buy
         </ColoredButton>
-        <HoverableNavLink to={`/${links.catalog}/${props.id}`}>
+        <HoverableNavLink to={`/${links.catalog}/${garland && garland.id}`}>
           <Button color="default">Learn More</Button>
         </HoverableNavLink>
       </CardActions>

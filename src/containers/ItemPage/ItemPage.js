@@ -9,13 +9,16 @@ import {
 } from "@material-ui/core";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { Skeleton } from "@material-ui/lab";
+import { useSnackbar } from "notistack";
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import ColoredButton from "../../components/ColoredButton/ColoredButton";
 import { HoverableNavLink } from "../../components/HoverableLink/HoverableLink.styled";
 import ItemDescription from "../../components/ItemDescription/ItemDescription";
 import NotFound from "../../components/NotFound/NotFound";
 import { getGarlandById } from "../../utils/API";
+import { addToCart } from "../../utils/context/slice/cartSlice";
 import { links, productImages } from "../../utils/Utils";
 import { ProductImage } from "./ItemPage.styled";
 
@@ -26,10 +29,13 @@ const packagingVariants = {
 };
 
 const ItemPage = () => {
+  const dispatch = useDispatch();
+  const { enqueueSnackbar } = useSnackbar();
   const { id } = useParams();
   const [isLoading, setLoading] = useState(true);
   const [item, setItem] = useState();
   const [packaging, setPackaging] = useState("");
+  const [quantity, setQuantity] = useState(1);
   const [isValid, setIsValid] = useState(true);
 
   useEffect(() => {
@@ -40,15 +46,29 @@ const ItemPage = () => {
           setLoading(false);
         })
         .catch((e) => console.log(e));
-    }, 3000);
-  }, []);
+    }, 2000);
+  }, [id]);
 
   const handleChangePackaging = (event) => {
     setPackaging(event.target.value);
   };
+
   const handleChangeQuantity = (event) => {
     setIsValid(event.target.value > 0);
+    if (event.target.value > 0) {
+      setQuantity(event.target.value);
+    }
   };
+
+  const handleBuy = () => {
+    let garlandsToAdd = { ...item, quantity: parseInt(quantity) };
+    dispatch(addToCart(garlandsToAdd));
+    enqueueSnackbar(`${quantity} garland(s) were added to cart!`, {
+      variant: "success",
+      autoHideDuration: 5000,
+    });
+  };
+
   return (
     <Box mx={20} pt={15}>
       <Box mb={5}>
@@ -84,6 +104,7 @@ const ItemPage = () => {
                       label="Quantity"
                       type="number"
                       onChange={handleChangeQuantity}
+                      defaultValue={quantity}
                       error={!isValid}
                       helperText={
                         !isValid
@@ -111,10 +132,8 @@ const ItemPage = () => {
                         onChange={handleChangePackaging}
                         label="Packaging"
                         width="100%"
+                        defaultValue={packagingVariants.standard.value}
                       >
-                        <MenuItem value="">
-                          <em>None</em>
-                        </MenuItem>
                         <MenuItem value={packagingVariants.standard.value}>
                           {packagingVariants.standard.title}
                         </MenuItem>
@@ -136,7 +155,12 @@ const ItemPage = () => {
                       </Button>
                     </HoverableNavLink>
                   </Box>
-                  <ColoredButton color="success" variant="outlined">
+                  <ColoredButton
+                    color="success"
+                    variant="outlined"
+                    disabled={!isValid}
+                    onClick={handleBuy}
+                  >
                     Add to cart
                   </ColoredButton>
                 </Box>

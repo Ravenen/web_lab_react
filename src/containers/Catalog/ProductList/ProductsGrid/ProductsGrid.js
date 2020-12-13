@@ -17,7 +17,7 @@ const ProductsGrid = ({ garlands, isLoading }) => {
         <>
           {garlands.map((garland) => (
             <CardGridWrapper key={garland.id}>
-              <CardComponent key={garland.id} {...garland}></CardComponent>
+              <CardComponent key={garland.id} garland={garland}></CardComponent>
             </CardGridWrapper>
           ))}
         </>
