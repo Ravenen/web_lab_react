@@ -1,11 +1,14 @@
 import { Box, Divider, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
-import RoundedButton from "../../../components/RoundedButton/RoundedButton";
+import { useDispatch, useSelector } from "react-redux";
 import CardGridContainer from "../../../components/CardGrid/CardGridContainer";
+import RoundedButton from "../../../components/RoundedButton/RoundedButton";
+import {
+  getAllItems,
+  selectItems,
+  selectLoading,
+} from "../../../utils/context/slice/itemsSlice";
 import { StyledToggleLink } from "./LatestProducts.styled";
-import { useGlobalContext } from "../../../utils/Contexts";
-import { getAllGarlands } from "../../../utils/API";
-import { INIT_GARLANDS } from "../../../utils/ActionTypes";
 import ProductsGrid from "./ProductsGrid/ProductsGrid";
 
 const seeMoreText = {
@@ -14,8 +17,9 @@ const seeMoreText = {
 };
 
 const LatestProducts = () => {
-  const { garlands, dispatch } = useGlobalContext();
-  const [isLoading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+  const garlands = useSelector(selectItems);
+  const isLoading = useSelector(selectLoading);
   const [naturalFilter, setNaturalFiler] = useState(0);
   const [showAllItems, setShowAllItems] = useState(false);
   const [seeMoreButtonText, setSeeMoreButtonText] = useState(
@@ -24,14 +28,7 @@ const LatestProducts = () => {
   const [itemsToShow, setItemsToShow] = useState([]);
 
   useEffect(() => {
-    setTimeout(() => {
-      getAllGarlands()
-        .then((res) => {
-          dispatch({ type: INIT_GARLANDS, payload: res.data });
-        })
-        .catch((e) => console.log(e))
-        .finally(() => setLoading(false));
-    }, 3000);
+    dispatch(getAllItems());
   }, [dispatch]);
   useEffect(() => {
     setItemsToShow(garlands.slice(-3).reverse());

@@ -6,10 +6,10 @@ import {
   makeStyles,
   Typography,
 } from "@material-ui/core";
-import React from "react";
-import { StyledBadge } from "../StyledBadge/StyledBadge.styled";
-import { productImages } from "../../utils/Utils";
 import { Skeleton } from "@material-ui/lab";
+import React from "react";
+import { productImages } from "../../utils/Utils";
+import { StyledBadge } from "../StyledBadge/StyledBadge.styled";
 
 const useStyles = makeStyles({
   media: {

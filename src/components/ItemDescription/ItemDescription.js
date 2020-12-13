@@ -1,6 +1,7 @@
 import { Box, Typography } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
 import React from "react";
+import { formatUah } from "../../utils/Utils";
 import BooleanText from "../BooleanText/BooleanText";
 import TagsComponent from "../TagsComponent/TagsComponent";
 
@@ -53,7 +54,7 @@ const ItemDescription = (props) => {
           {isLoading ? (
             <Skeleton width="40%" />
           ) : (
-            `Price: ${props.price_in_uah} UAH`
+            `Price: ${formatUah(props.price_in_uah)}`
           )}
         </Typography>
       </Box>

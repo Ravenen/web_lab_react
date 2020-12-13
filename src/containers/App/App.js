@@ -1,11 +1,14 @@
-import React from "react";
-import { BrowserRouter } from "react-router-dom";
+import { Button } from "@material-ui/core";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
-import Layout from "../Layout/Layout";
+import { SnackbarProvider } from "notistack";
+import React from "react";
+import { BrowserRouter, NavLink } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
-import PageContent from "../PageContent/PageContent";
-import Footer from "../Footer/Footer";
 import { GlobalContextProvider } from "../../utils/Contexts";
+import { links } from "../../utils/Utils";
+import Footer from "../Footer/Footer";
+import Layout from "../Layout/Layout";
+import PageContent from "../PageContent/PageContent";
 
 const theme = createMuiTheme({
   palette: {
@@ -47,9 +50,18 @@ const App = () => {
       <MuiThemeProvider theme={theme}>
         <ThemeProvider theme={theme}>
           <GlobalContextProvider>
-            <Layout />
-            <PageContent />
-            <Footer />
+            <SnackbarProvider
+              maxSnack={3}
+              action={
+                <NavLink exact to={`/${links.cart}`}>
+                  <Button>Go to cart</Button>
+                </NavLink>
+              }
+            >
+              <Layout />
+              <PageContent />
+              <Footer />
+            </SnackbarProvider>
           </GlobalContextProvider>
         </ThemeProvider>
       </MuiThemeProvider>

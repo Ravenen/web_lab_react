@@ -1,1 +1,0 @@
-export const INIT_GARLANDS = "INIT_GARLANDS";

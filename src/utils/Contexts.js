@@ -1,23 +1,9 @@
-import React, { createContext, useContext, useReducer } from "react";
-import { garlandInitialState, garlandReducer } from "./Reducer";
+import React from "react";
+import { Provider } from "react-redux";
+import store from "./context/store";
 
-const GlobalContext = createContext();
-const useGlobalContext = () => useContext(GlobalContext);
-
-const GlobalContextProvider = ({ children, value }) => {
-  const [state, dispatch] = useReducer(garlandReducer, garlandInitialState);
-
-  return (
-    <GlobalContext.Provider
-      value={{
-        garlands: state.garlands,
-        dispatch,
-        ...value,
-      }}
-    >
-      {children}
-    </GlobalContext.Provider>
-  );
+const GlobalContextProvider = ({ children }) => {
+  return <Provider store={store}>{children}</Provider>;
 };
 
-export { GlobalContextProvider, useGlobalContext };
+export { GlobalContextProvider };

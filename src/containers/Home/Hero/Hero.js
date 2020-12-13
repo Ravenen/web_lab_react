@@ -1,7 +1,7 @@
 import { Box, Grid, Hidden, Typography } from "@material-ui/core";
 import React from "react";
-import hero from "../../../img/hero.png";
 import RoundedButton from "../../../components/RoundedButton/RoundedButton";
+import hero from "../../../img/hero.png";
 
 const Hero = () => {
   return (
