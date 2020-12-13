@@ -8,6 +8,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Typography,
 } from "@material-ui/core";
 import React from "react";
 import { useSelector } from "react-redux";
@@ -15,6 +16,7 @@ import CounterGroup from "../../../components/CounterGroup/CounterGroup";
 import { selectCart } from "../../../utils/context/slice/cartSlice";
 import { formatUah, productImages } from "../../../utils/Utils";
 import { ProductImage } from "./CardList.styled";
+import ColoredButton from "../../../components/ColoredButton/ColoredButton";
 
 const useStyles = makeStyles({
   table: {
@@ -25,19 +27,19 @@ const useStyles = makeStyles({
 const CartList = () => {
   const classes = useStyles();
   const cart = useSelector(selectCart);
+
   return (
     <Box mx={30} mt={10} mb={5} display="flex" flexDirection="column">
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="cart table">
-          {/* <TableHead>
-          <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
-          </TableRow>
-        </TableHead> */}
+          <TableHead>
+            <TableRow>
+              <TableCell>Image</TableCell>
+              <TableCell>Name</TableCell>
+              <TableCell align="right">Quantity</TableCell>
+              <TableCell align="right">Price</TableCell>
+            </TableRow>
+          </TableHead>
           <TableBody>
             {cart.map((item) => (
               <TableRow key={item.id}>
@@ -56,6 +58,29 @@ const CartList = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      <Box my={5} alignSelf="flex-end">
+        <Typography variant="h5">
+          Total price:{" "}
+          <Box fontWeight="bold" component="span">
+            {formatUah(
+              cart.reduce(
+                (accumulator, item) =>
+                  accumulator + item.price_in_uah * item.quantity,
+                0
+              )
+            )}
+          </Box>
+        </Typography>
+      </Box>
+      <Box mb={5} alignSelf="flex-end">
+        <ColoredButton
+          color="success"
+          variant="contained"
+          disabled={cart.length === 0}
+        >
+          Purchase now
+        </ColoredButton>
+      </Box>
     </Box>
   );
 };
