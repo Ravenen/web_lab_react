@@ -19,7 +19,11 @@ import ItemDescription from "../../components/ItemDescription/ItemDescription";
 import NotFound from "../../components/NotFound/NotFound";
 import { getGarlandById } from "../../utils/API";
 import { addToCart } from "../../utils/context/slice/cartSlice";
-import { links, productImages } from "../../utils/Utils";
+import {
+  links,
+  productImages,
+  showGarlandsAddedToCart,
+} from "../../utils/Utils";
 import { ProductImage } from "./ItemPage.styled";
 
 const packagingVariants = {
@@ -63,10 +67,7 @@ const ItemPage = () => {
   const handleBuy = () => {
     let garlandsToAdd = { ...item, quantity: parseInt(quantity) };
     dispatch(addToCart(garlandsToAdd));
-    enqueueSnackbar(`${quantity} garland(s) were added to cart!`, {
-      variant: "success",
-      autoHideDuration: 5000,
-    });
+    showGarlandsAddedToCart(enqueueSnackbar, quantity);
   };
 
   return (

@@ -31,6 +31,15 @@ export const removeUnderscoreFromString = (str) => {
   return str.replace("_", " ");
 };
 
+export const showGarlandsAddedToCart = (enqueueSnackbar, quantity) => {
+  let pluralEnding = quantity > 1 ? "s" : "";
+  let verb = quantity > 1 ? "were" : "was";
+  enqueueSnackbar(`${quantity} garland${pluralEnding} ${verb} added to cart!`, {
+    variant: "success",
+    autoHideDuration: 5000,
+  });
+};
+
 export const links = {
   home: "",
   catalog: "catalog",

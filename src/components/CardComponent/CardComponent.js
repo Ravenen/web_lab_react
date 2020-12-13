@@ -13,7 +13,11 @@ import { useSnackbar } from "notistack";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../utils/context/slice/cartSlice";
-import { links, productImages } from "../../utils/Utils";
+import {
+  links,
+  productImages,
+  showGarlandsAddedToCart,
+} from "../../utils/Utils";
 import ColoredButton from "../ColoredButton/ColoredButton";
 import { HoverableNavLink } from "../HoverableLink/HoverableLink.styled";
 import CardDescription from "./CardDescription";
@@ -34,10 +38,7 @@ const CardComponent = (props) => {
   const handleBuy = () => {
     let singleGarland = { ...garland, quantity: 1 };
     dispatch(addToCart(singleGarland));
-    enqueueSnackbar("1 garland was added to cart!", {
-      variant: "success",
-      autoHideDuration: 5000,
-    });
+    showGarlandsAddedToCart(enqueueSnackbar, 1);
   };
 
   return (
