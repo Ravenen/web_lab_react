@@ -6,9 +6,10 @@ import {
   makeStyles,
   Typography,
 } from "@material-ui/core";
+import { Skeleton } from "@material-ui/lab";
 import React from "react";
-import { StyledBadge } from "../StyledBadge/StyledBadge.styled";
 import { productImages } from "../../utils/Utils";
+import { StyledBadge } from "../StyledBadge/StyledBadge.styled";
 
 const useStyles = makeStyles({
   media: {
@@ -18,32 +19,47 @@ const useStyles = makeStyles({
 
 const ViewCardComponent = (props) => {
   const classes = useStyles();
-
+  const isLoading = props.isLoading || false;
   return (
     <Card>
-      <CardMedia
-        className={classes.media}
-        image={productImages[props.id] || productImages[0]}
-        title="Garland"
-      />
+      {isLoading ? (
+        <Skeleton variant="rect" height={360} />
+      ) : (
+        <CardMedia
+          className={classes.media}
+          image={productImages[props.id] || productImages[0]}
+          title="Garland"
+        />
+      )}
       <CardContent>
         <Box textAlign="center" mb={2}>
           <Typography gutterBottom variant="h5" component="h2">
-            <StyledBadge
-              badgeContent={props.id % 3 === 0 ? "HOT" : 0}
-              color="primary"
-            >
-              Garland
-            </StyledBadge>
+            {isLoading ? (
+              <Box component={Skeleton} mx={10} />
+            ) : (
+              <StyledBadge
+                badgeContent={props.id % 3 === 0 ? "HOT" : 0}
+                color="primary"
+              >
+                Garland
+              </StyledBadge>
+            )}
           </Typography>
         </Box>
         <Box textAlign="center">
-          <Typography variant="body2" color="textSecondary">
-            <Box lineHeight={2} component="span">
-              Quis culpa deserunt do quis commodo nulla. Aute non aliquip est
-              aliquip do incididunt irure duis anim ullamco.
+          {isLoading ? (
+            <Box>
+              <Skeleton />
+              <Box component={Skeleton} mx={2} />
             </Box>
-          </Typography>
+          ) : (
+            <Typography variant="body2" color="textSecondary">
+              <Box lineHeight={2} component="span">
+                Quis culpa deserunt do quis commodo nulla. Aute non aliquip est
+                aliquip do incididunt irure duis anim ullamco.
+              </Box>
+            </Typography>
+          )}
         </Box>
       </CardContent>
     </Card>

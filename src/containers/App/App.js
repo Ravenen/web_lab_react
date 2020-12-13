@@ -1,12 +1,14 @@
-import React, { useEffect } from "react";
-import { BrowserRouter } from "react-router-dom";
+import { Button } from "@material-ui/core";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
-import Layout from "../Layout/Layout";
+import { SnackbarProvider } from "notistack";
+import React from "react";
+import { BrowserRouter, NavLink } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
-import PageContent from "../PageContent/PageContent";
+import { GlobalContextProvider } from "../../utils/Contexts";
+import { links } from "../../utils/Utils";
 import Footer from "../Footer/Footer";
-import { ItemsContext } from "../../utils/Contexts";
-import { API } from "../../utils/Utils";
+import Layout from "../Layout/Layout";
+import PageContent from "../PageContent/PageContent";
 
 const theme = createMuiTheme({
   palette: {
@@ -43,16 +45,24 @@ const theme = createMuiTheme({
 });
 
 const App = () => {
-  const items = API.getAll();
   return (
     <BrowserRouter>
       <MuiThemeProvider theme={theme}>
         <ThemeProvider theme={theme}>
-          <ItemsContext.Provider value={{ allItems: items }}>
-            <Layout />
-            <PageContent />
-            <Footer />
-          </ItemsContext.Provider>
+          <GlobalContextProvider>
+            <SnackbarProvider
+              maxSnack={3}
+              action={
+                <NavLink exact to={`/${links.cart}`}>
+                  <Button>Go to cart</Button>
+                </NavLink>
+              }
+            >
+              <Layout />
+              <PageContent />
+              <Footer />
+            </SnackbarProvider>
+          </GlobalContextProvider>
         </ThemeProvider>
       </MuiThemeProvider>
     </BrowserRouter>

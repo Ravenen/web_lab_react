@@ -1,19 +1,10 @@
-import React from "react";
 import { Box, Grid, Typography } from "@material-ui/core";
-import { Facebook, Twitter, LinkedIn } from "@material-ui/icons";
+import { Facebook, LinkedIn, Twitter } from "@material-ui/icons";
+import React from "react";
 import IconWrapper from "../../components/IconWrapper/IconWrapper";
 
 const Footer = () => {
   return (
-    // <Box
-    //   component={Grid}
-    //   container
-    //   display="flex"
-    //   justify="space-between"
-    //   alignItems="center"
-    //   px={20}
-    //   py={10}
-    // >
     <Box
       display="flex"
       justifyContent="space-between"

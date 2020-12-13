@@ -1,11 +1,11 @@
 import React from "react";
-import CatalogHeader from "./CatalogHeader/CatalogHeader";
+import PageHeader from "../../components/PageHeader/PageHeader";
 import ProductList from "./ProductList/ProductList";
 
 const Catalog = () => {
   return (
     <div>
-      <CatalogHeader />
+      <PageHeader>Product Catalog</PageHeader>
       <ProductList />
     </div>
   );

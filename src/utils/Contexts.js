@@ -1,3 +1,9 @@
-const { createContext } = require("react");
+import React from "react";
+import { Provider } from "react-redux";
+import store from "./context/store";
 
-export const ItemsContext = createContext();
+const GlobalContextProvider = ({ children }) => {
+  return <Provider store={store}>{children}</Provider>;
+};
+
+export { GlobalContextProvider };

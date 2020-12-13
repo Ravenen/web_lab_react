@@ -1,21 +1,34 @@
 import { Box, Divider, Slider, Typography } from "@material-ui/core";
-import React, { useContext, useEffect, useState } from "react";
-import CardComponent from "../../../components/CardComponent/CardComponent";
-import CardGridContainer from "../../../components/CardGrid/CardGridContainer";
-import CardGridWrapper from "../../../components/CardGrid/CardGridWrapper";
-import { removeUnderscoreFromString, tagList } from "../../../utils/Utils";
 import SearchBar from "material-ui-search-bar";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import CardGridContainer from "../../../components/CardGrid/CardGridContainer";
 import ChipAutocomplite from "../../../components/ChipAutocomplite/ChipAutocomplite";
-import { ItemsContext } from "../../../utils/Contexts";
+import {
+  getAllItems,
+  getFilteredItems,
+  selectItems,
+  selectLoading,
+} from "../../../utils/context/slice/itemsSlice";
+import { removeUnderscoreFromString, tagList } from "../../../utils/Utils";
+import ProductsGrid from "./ProductsGrid/ProductsGrid";
 
 const ProductList = () => {
-  const { allItems } = useContext(ItemsContext);
+  const dispatch = useDispatch();
+  const garlands = useSelector(selectItems);
+  const isLoading = useSelector(selectLoading);
 
-  const [items, setItems] = useState(allItems);
-
+  const [items, setItems] = useState(garlands);
   const [searchValue, setSearchValue] = useState("");
   const [tagsFilter, setTagsFilter] = useState([]);
-  const [priceRange, setPriceRange] = useState([0, Infinity]);
+  const [priceRange, setPriceRange] = useState([0, 3000]);
+
+  useEffect(() => {
+    dispatch(getAllItems());
+  }, [dispatch]);
+  useEffect(() => {
+    setItems(garlands);
+  }, [garlands]);
 
   const handleTagsFilter = (event, values) => {
     setTagsFilter(values);
@@ -33,23 +46,17 @@ const ProductList = () => {
     setPriceRange(value);
   };
 
+  const handleSearchRequest = () => {
+    dispatch(getFilteredItems(tagsFilter, priceRange));
+  };
+
   useEffect(() => {
     let newItems;
-    newItems = allItems.filter(
-      (item) =>
-        tagsFilter.every((tag) => item.decor_type.indexOf(tag) >= 0) ||
-        !tagsFilter.length
-    );
-    newItems = newItems.filter(
+    newItems = garlands.filter(
       (item) => item.color.includes(searchValue) || !searchValue.length
     );
-    newItems = newItems.filter(
-      (item) =>
-        item.price_in_uah >= priceRange[0] && item.price_in_uah <= priceRange[1]
-    );
-
     setItems(newItems);
-  }, [tagsFilter, searchValue, priceRange]);
+  }, [searchValue]);
 
   return (
     <Box mx={30} mt={10} mb={5} display="flex" flexDirection="column">
@@ -88,18 +95,14 @@ const ProductList = () => {
           onChange={handleSearch}
           onCancelSearch={handleCancelSearch}
           placeholder="Search by color"
-          // onRequestSearch={() => doSomethingWith(this.state.value)}
+          onRequestSearch={handleSearchRequest}
         />
       </Box>
       <Box mt={3} mb={5}>
         <Divider />
       </Box>
       <CardGridContainer>
-        {items.map((garland) => (
-          <CardGridWrapper key={garland.id}>
-            <CardComponent key={garland.id} {...garland}></CardComponent>
-          </CardGridWrapper>
-        ))}
+        <ProductsGrid garlands={items} isLoading={isLoading} />
       </CardGridContainer>
     </Box>
   );
