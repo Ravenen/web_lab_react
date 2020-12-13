@@ -7,18 +7,38 @@ export const cartSlice = createSlice({
   },
   reducers: {
     addToCart: (state, action) => {
-      let foundCart = state.cart.find((item) => item.id === action.payload.id);
-      if (foundCart) {
-        foundCart.quantity += action.payload.quantity;
+      let foundItem = state.cart.find((item) => item.id === action.payload.id);
+      if (foundItem) {
+        foundItem.quantity += action.payload.quantity;
       } else {
         state.cart = [...state.cart, action.payload];
       }
-      console.log(state.cart);
+    },
+    incrementQuantity: (state, action) => {
+      let foundItem = state.cart.find((item) => item.id === action.payload.id);
+      if (foundItem) {
+        foundItem.quantity += 1;
+      }
+    },
+    decrementQuantity: (state, action) => {
+      let foundItem = state.cart.find((item) => item.id === action.payload.id);
+      if (foundItem) {
+        if (foundItem.quantity > 1) {
+          foundItem.quantity -= 1;
+        } else {
+          let index = state.cart.indexOf(foundItem);
+          state.cart.splice(index, 1);
+        }
+      }
     },
   },
 });
 
-export const { addToCart } = cartSlice.actions;
+export const {
+  addToCart,
+  incrementQuantity,
+  decrementQuantity,
+} = cartSlice.actions;
 
 export const selectCart = (state) => state.cart.cart;
 
