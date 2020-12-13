@@ -40,6 +40,13 @@ export const showGarlandsAddedToCart = (enqueueSnackbar, quantity) => {
   });
 };
 
+export const formatUah = (amount) => {
+  return new Intl.NumberFormat("ua-UA", {
+    style: "currency",
+    currency: "UAH",
+  }).format(amount);
+};
+
 export const links = {
   home: "",
   catalog: "catalog",

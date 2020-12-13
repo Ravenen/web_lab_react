@@ -13,7 +13,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import CounterGroup from "../../../components/CounterGroup/CounterGroup";
 import { selectCart } from "../../../utils/context/slice/cartSlice";
-import { productImages } from "../../../utils/Utils";
+import { formatUah, productImages } from "../../../utils/Utils";
 import { ProductImage } from "./CardList.styled";
 
 const useStyles = makeStyles({
@@ -49,7 +49,7 @@ const CartList = () => {
                   <CounterGroup id={item.id} quantity={item.quantity} />
                 </TableCell>
                 <TableCell align="right">
-                  {item.price_in_uah * item.quantity} UAH
+                  {formatUah(item.price_in_uah * item.quantity)}
                 </TableCell>
               </TableRow>
             ))}

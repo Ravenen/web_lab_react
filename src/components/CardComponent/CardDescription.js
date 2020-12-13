@@ -1,5 +1,6 @@
 import { Box, Typography } from "@material-ui/core";
 import React from "react";
+import { formatUah } from "../../utils/Utils";
 import BooleanText from "../BooleanText/BooleanText";
 import TagsComponent from "../TagsComponent/TagsComponent";
 
@@ -13,7 +14,7 @@ const CardDescription = (props) => {
       </Typography>
       <TagsComponent key={props.key} tags={props.decor_type} />
       <Typography variant="body2" color="textPrimary" component="p">
-        Price: {props.price_in_uah} UAH
+        Price: {formatUah(props.price_in_uah)}
       </Typography>
     </Box>
   );
