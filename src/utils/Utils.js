@@ -52,4 +52,6 @@ export const links = {
   catalog: "catalog",
   blog: "blog",
   cart: "cart",
+  checkout: "checkout",
+  success: "success",
 };
