@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import ColoredButton from "../../components/ColoredButton/ColoredButton";
 import CustomInputField from "../../components/CustomInputField/CustomInputField";
 import GoBack from "../../components/GoBack/GoBack";
+import { links } from "../../utils/Utils";
 
 const initialValues = {
   firstName: "",
@@ -44,7 +45,7 @@ const Checkout = () => {
     console.log(values);
     setTimeout(() => {
       setSubmitting(false);
-      history.push("/success");
+      history.push(`/${links.success}`);
     }, 3000);
   };
   return (
