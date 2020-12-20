@@ -1,14 +1,18 @@
-import { Box } from "@material-ui/core";
+import { Box, IconButton } from "@material-ui/core";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import React from "react";
-import { HoverableNavLink } from "../../components/HoverableLink/HoverableLink.styled";
+import { useHistory } from "react-router-dom";
 
 const GoBack = ({ to }) => {
+  const history = useHistory();
+  const handleOnClick = () => {
+    history.goBack();
+  };
   return (
     <Box mb={5}>
-      <HoverableNavLink to={`/${to}`}>
+      <IconButton onClick={handleOnClick}>
         <ArrowBackIosIcon />
-      </HoverableNavLink>
+      </IconButton>
     </Box>
   );
 };

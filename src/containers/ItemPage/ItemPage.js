@@ -7,7 +7,6 @@ import {
   Select,
   TextField,
 } from "@material-ui/core";
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { Skeleton } from "@material-ui/lab";
 import { useSnackbar } from "notistack";
 import React, { useEffect, useState } from "react";
@@ -73,7 +72,7 @@ const ItemPage = () => {
 
   return (
     <Box mx={20} pt={15}>
-      <GoBack to={links.catalog} />
+      <GoBack />
       {item || isLoading ? (
         <Box display="flex" alignItems="flex-start">
           {isLoading ? (
