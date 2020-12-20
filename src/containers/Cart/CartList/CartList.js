@@ -44,7 +44,9 @@ const CartList = () => {
             {cart.map((item) => (
               <TableRow key={item.id}>
                 <TableCell component="th" scope="row">
-                  <ProductImage src={productImages[item.id]} />
+                  <ProductImage
+                    src={productImages[item.id] || productImages[0]}
+                  />
                 </TableCell>
                 <TableCell>Garland ({item.color})</TableCell>
                 <TableCell align="right" padding="none">
