@@ -14,9 +14,10 @@ import React from "react";
 import { useSelector } from "react-redux";
 import CounterGroup from "../../../components/CounterGroup/CounterGroup";
 import { selectCart } from "../../../utils/context/slice/cartSlice";
-import { formatUah, productImages } from "../../../utils/Utils";
+import { formatUah, links, productImages } from "../../../utils/Utils";
 import { ProductImage } from "./CardList.styled";
 import ColoredButton from "../../../components/ColoredButton/ColoredButton";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles({
   table: {
@@ -27,6 +28,11 @@ const useStyles = makeStyles({
 const CartList = () => {
   const classes = useStyles();
   const cart = useSelector(selectCart);
+  const history = useHistory();
+
+  const handlePurchase = () => {
+    history.push(`/${links.checkout}`);
+  };
 
   return (
     <Box mx={30} mt={10} mb={5} display="flex" flexDirection="column">
@@ -79,6 +85,7 @@ const CartList = () => {
           color="success"
           variant="contained"
           disabled={cart.length === 0}
+          onClick={handlePurchase}
         >
           Purchase now
         </ColoredButton>

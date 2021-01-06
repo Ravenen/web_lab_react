@@ -7,13 +7,13 @@ import {
   Select,
   TextField,
 } from "@material-ui/core";
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { Skeleton } from "@material-ui/lab";
 import { useSnackbar } from "notistack";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import ColoredButton from "../../components/ColoredButton/ColoredButton";
+import GoBack from "../../components/GoBack/GoBack";
 import { HoverableNavLink } from "../../components/HoverableLink/HoverableLink.styled";
 import ItemDescription from "../../components/ItemDescription/ItemDescription";
 import NotFound from "../../components/NotFound/NotFound";
@@ -72,11 +72,7 @@ const ItemPage = () => {
 
   return (
     <Box mx={20} pt={15}>
-      <Box mb={5}>
-        <HoverableNavLink to={`/${links.catalog}`}>
-          <ArrowBackIosIcon />
-        </HoverableNavLink>
-      </Box>
+      <GoBack />
       {item || isLoading ? (
         <Box display="flex" alignItems="flex-start">
           {isLoading ? (

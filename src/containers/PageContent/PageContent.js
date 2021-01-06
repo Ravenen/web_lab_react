@@ -5,6 +5,8 @@ import Home from "../Home/Home";
 import ItemPage from "../ItemPage/ItemPage";
 import { links } from "../../utils/Utils";
 import Cart from "../Cart/Cart";
+import Checkout from "../Chechkout/Checkout";
+import Success from "../Success/Success";
 
 const PageContent = () => {
   return (
@@ -15,6 +17,8 @@ const PageContent = () => {
         <Route path={`/${links.catalog}/:id`} component={ItemPage} />
         <Route exact path={`/${links.blog}`} component={Blog} />
         <Route exact path={`/${links.cart}`} component={Cart} />
+        <Route exact path={`/${links.checkout}`} component={Checkout} />
+        <Route exact path={`/${links.success}`} component={Success} />
       </Switch>
     </div>
   );
