@@ -7,6 +7,8 @@ import { links } from "../../utils/Utils";
 import Cart from "../Cart/Cart";
 import Checkout from "../Chechkout/Checkout";
 import Success from "../Success/Success";
+import SignIn from "../SignIn/SignIn";
+import SignUp from "../SignUp/SignUp";
 
 const PageContent = () => {
   return (
@@ -19,6 +21,8 @@ const PageContent = () => {
         <Route exact path={`/${links.cart}`} component={Cart} />
         <Route exact path={`/${links.checkout}`} component={Checkout} />
         <Route exact path={`/${links.success}`} component={Success} />
+        <Route exact path={`/${links.signIn}`} component={SignIn} />
+        <Route exact path={`/${links.signUp}`} component={SignUp} />
       </Switch>
     </div>
   );

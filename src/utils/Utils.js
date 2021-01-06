@@ -54,4 +54,6 @@ export const links = {
   cart: "cart",
   checkout: "checkout",
   success: "success",
+  signIn: "signin",
+  signUp: "signup",
 };
