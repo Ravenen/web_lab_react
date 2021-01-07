@@ -22,7 +22,7 @@ const validationSchema = Yup.object({
 });
 
 const SignIn = () => {
-  const [email, setEmail, deleteEmail] = useLocalStorage(loginKeyName);
+  const [email, setEmail] = useLocalStorage(loginKeyName);
 
   const handleSubmit = (values, { setSubmitting }) => {
     setSubmitting(true);
@@ -73,7 +73,6 @@ const SignIn = () => {
                   variant="standard"
                 />
               </Box>
-
               <Box mb={5}>
                 <Box
                   component={CustomInputField}
