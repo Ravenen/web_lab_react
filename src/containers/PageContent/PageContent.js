@@ -11,8 +11,7 @@ import SignIn from "../SignIn/SignIn";
 import SignUp from "../SignUp/SignUp";
 import ProtectedRoute from "../../components/ProtectedRoute/ProtectedRoute";
 
-const PageContent = () => {
-  const isSignedIn = true;
+const PageContent = ({ isSignedIn, login }) => {
   return (
     <div>
       <Switch>

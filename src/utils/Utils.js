@@ -57,3 +57,5 @@ export const links = {
   signIn: "signin",
   signUp: "signup",
 };
+
+export const loginKeyName = "email";

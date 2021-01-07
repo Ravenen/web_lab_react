@@ -1,11 +1,12 @@
 import { Badge, Box, IconButton, makeStyles } from "@material-ui/core";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import useLocalStorage from "@rehooks/local-storage";
 import React from "react";
 import { useSelector } from "react-redux";
 import { HoverableNavLink } from "../../../components/HoverableLink/HoverableLink.styled";
 import RoundedButton from "../../../components/RoundedButton/RoundedButton";
 import { selectCart } from "../../../utils/context/slice/cartSlice";
-import { links } from "../../../utils/Utils";
+import { links, loginKeyName } from "../../../utils/Utils";
 
 const useStyles = makeStyles((theme) => ({
   extendedIcon: {
@@ -16,6 +17,11 @@ const useStyles = makeStyles((theme) => ({
 const ActionNavButtons = () => {
   const classes = useStyles();
   const cart = useSelector(selectCart);
+  const [email, setEmail, deleteEmail] = useLocalStorage(loginKeyName);
+
+  const handleSignOut = () => {
+    deleteEmail();
+  };
 
   return (
     <Box display="flex">
@@ -26,8 +32,12 @@ const ActionNavButtons = () => {
           </Badge>
         </IconButton>
       </HoverableNavLink>
-      <RoundedButton variant="contained" color="secondary">
-        Sign In
+      <RoundedButton
+        variant="contained"
+        color="secondary"
+        onClick={handleSignOut}
+      >
+        Sign Out
       </RoundedButton>
     </Box>
   );

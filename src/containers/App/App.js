@@ -5,10 +5,11 @@ import React from "react";
 import { BrowserRouter, NavLink } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { GlobalContextProvider } from "../../utils/Contexts";
-import { links } from "../../utils/Utils";
+import { links, loginKeyName } from "../../utils/Utils";
 import Footer from "../Footer/Footer";
 import Layout from "../Layout/Layout";
 import PageContent from "../PageContent/PageContent";
+import { useLocalStorage } from "@rehooks/local-storage";
 
 const theme = createMuiTheme({
   palette: {
@@ -45,6 +46,7 @@ const theme = createMuiTheme({
 });
 
 const App = () => {
+  const [email] = useLocalStorage(loginKeyName);
   return (
     <BrowserRouter>
       <MuiThemeProvider theme={theme}>
@@ -58,9 +60,9 @@ const App = () => {
                 </NavLink>
               }
             >
-              <Layout />
-              <PageContent />
-              <Footer />
+              {email && <Layout />}
+              <PageContent isSignedIn={!!email} />
+              {email && <Footer />}
             </SnackbarProvider>
           </GlobalContextProvider>
         </ThemeProvider>
