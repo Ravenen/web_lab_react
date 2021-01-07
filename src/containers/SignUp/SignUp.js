@@ -109,7 +109,7 @@ const SignUp = () => {
                   variant="standard"
                 />
               </Box>
-              <Box mb={5}>
+              <Box mb={4}>
                 <Box
                   component={CustomInputField}
                   width={250}
