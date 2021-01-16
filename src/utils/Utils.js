@@ -41,7 +41,7 @@ export const showGarlandsAddedToCart = (enqueueSnackbar, quantity) => {
 };
 
 export const formatUah = (amount) => {
-  return new Intl.NumberFormat("ua-UA", {
+  return new Intl.NumberFormat("en-EN", {
     style: "currency",
     currency: "UAH",
   }).format(amount);
@@ -54,4 +54,8 @@ export const links = {
   cart: "cart",
   checkout: "checkout",
   success: "success",
+  signIn: "signin",
+  signUp: "signup",
 };
+
+export const loginKeyName = "email";
